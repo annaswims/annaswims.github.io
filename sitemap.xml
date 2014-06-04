@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://lady.codes/about/</loc>
+        <lastmod>2014-06-04T13:10:37-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://lady.codes/blog/archives/</loc>
+        <lastmod>2014-06-04T12:31:52-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://lady.codes/</loc>
+        <lastmod>2014-06-04T12:31:52-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://lady.codes/robots.txt</loc>
+        <lastmod>2014-06-04T12:31:52-04:00</lastmod>
+    </url>
+</urlset>
