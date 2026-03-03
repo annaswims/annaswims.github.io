@@ -111,6 +111,18 @@
     <button class="f-btn" data-cat="mono">Monospace</button>
     <button class="f-btn" data-cat="hand">Handwriting</button>
   </div>
+  <div class="filters" id="weight-filters">
+    <button class="f-btn on" data-wt="all">Any Weight</button>
+    <button class="f-btn" data-wt="100">Thin</button>
+    <button class="f-btn" data-wt="200">XLight</button>
+    <button class="f-btn" data-wt="300">Light</button>
+    <button class="f-btn" data-wt="400">Regular</button>
+    <button class="f-btn" data-wt="500">Medium</button>
+    <button class="f-btn" data-wt="600">SemiBold</button>
+    <button class="f-btn" data-wt="700">Bold</button>
+    <button class="f-btn" data-wt="800">XBold</button>
+    <button class="f-btn" data-wt="900">Black</button>
+  </div>
   <input type="search" id="search-input" placeholder="Search fonts…" />
 </div>
 
@@ -124,6 +136,7 @@ const RAW = [{"f":"ABeeZee","c":"Sans Serif","cl":[],"w":["400"]},{"f":"ADLaM Di
 let previewText = 'The quick brown fox';
 let fontSize = 32;
 let activeCat = 'all';
+let activeWeight = 'all';
 let search = '';
 const loaded = new Set();
 
@@ -162,8 +175,9 @@ let renderTimer;
 function render() {
   const filtered = allFonts.filter(f => {
     const catOk = activeCat === 'all' || f._cat === activeCat;
+    const weightOk = activeWeight === 'all' || (f.w || []).map(String).includes(activeWeight);
     const searchOk = !search || f.f.toLowerCase().includes(search.toLowerCase());
-    return catOk && searchOk;
+    return catOk && weightOk && searchOk;
   });
 
   document.getElementById('vis').textContent = filtered.length;
@@ -219,9 +233,17 @@ document.getElementById('size-slider').addEventListener('input', e => {
 document.getElementById('cat-filters').addEventListener('click', e => {
   const btn = e.target.closest('.f-btn');
   if (!btn) return;
-  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('#cat-filters .f-btn').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
   activeCat = btn.dataset.cat;
+  render();
+});
+document.getElementById('weight-filters').addEventListener('click', e => {
+  const btn = e.target.closest('.f-btn');
+  if (!btn) return;
+  document.querySelectorAll('#weight-filters .f-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  activeWeight = btn.dataset.wt;
   render();
 });
 document.getElementById('search-input').addEventListener('input', e => {
