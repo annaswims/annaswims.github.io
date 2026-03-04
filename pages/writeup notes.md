@@ -55,3 +55,7 @@ designs.  The blue rectangle is a guide for the minimum size of the front piece 
 
 Materials:
 I used 100lb card stock and laminated it. Lamination is not necessary, but it did add quite a bit of stability and durability. It also made it smoother and nicer to slide. I cut the example with my Cricut, but a careful hand and an X-Acto knife would do the trick. 
+
+
+Assembly:
+Put the back piece behind the front piece and slide the tab into the slot, as far left as it will go (when you're looking at it from the front). then tuck the tab (center of the back piece) in to the nearest spoke of the front piece. Do this for all six sections. Then on the front size, stick a small piece of tape to the star shape on the front, where all of the tabs from the back are sticking through. This will help the back pice hold its shape. Make sure tha the tape only is on the tabs sticking through from the back, not the front pice so that it can move freely. Then, add a brad to the center that holds both pieces together.
