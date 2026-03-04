@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Amazing Jason — A Volvelle</title>
+  <title>Building a Volvelle</title>
   <style>
     :root {
       --ink: #1a1209;
@@ -239,29 +239,38 @@
 
 <header>
   <div class="kicker">A Paper Craft Project</div>
-  <h1>The Amazing <em>Jason</em></h1>
-  <div class="subtitle">Building a volvelle — a rotating image wheel — from scratch</div>
+  <h1>Building a <em>Volvelle</em></h1>
+  <div class="subtitle">A rotating image wheel, designed from scratch</div>
 </header>
 
 <main>
 
   <section>
+    <div class="photo-single">
+      <figure>
+        <video controls playsinline style="width:100%;display:block;border:1px solid var(--aged);">
+          <source src="volvelle-images/working_prototype.MOV" type="video/mp4" />
+        </video>
+        <figcaption>The wheel in motion</figcaption>
+      </figure>
+    </div>
+
     <div class="photo-pair">
       <figure>
-        <img src="volvelle-images/prototype-front-image.jpeg" alt="Front of the volvelle: a circus ringmaster with arms outstretched, text reads The Amazing Jason" />
-        <figcaption>Front — arms wide, the showman revealed</figcaption>
+        <img src="volvelle-images/prototype-front-image.jpeg" alt="Front of the volvelle: a circus ringmaster with arms outstretched" />
+        <figcaption>Position one</figcaption>
       </figure>
       <figure>
-        <img src="volvelle-images/prototype-back-image.jpeg" alt="Back of the volvelle: the same ringmaster now holding a giant bouquet, a surprise image revealed by rotating the wheel" />
+        <img src="volvelle-images/prototype-back-image.jpeg" alt="The wheel rotated to reveal a second image through the same cutout windows" />
         <figcaption>Rotate the wheel — a new image appears</figcaption>
       </figure>
     </div>
 
     <p>
-      I made a personalized volvelle for a friend named Jason. On the front: Jason as a circus ringmaster, arms thrown wide, basking in applause. Rotate the inner wheel and the image transforms — the same figure, now clutching an enormous, absurd bouquet. Same frame. Different story. That's the trick.
+      A <strong>volvelle</strong> (also called a wheel chart or turning wheel) is a paper mechanism where two circular pieces rotate against each other, revealing different images through cutouts as you spin. They've been around since the Middle Ages — used for astronomy, calendars, and ciphers. The Victorian era added a more playful version: picture wheels in children's books, where turning a disc would swap one scene for another.
     </p>
     <p>
-      A <strong>volvelle</strong> (also called a wheel chart or turning wheel) is a paper mechanism where two circular pieces rotate against each other, revealing different images through cutouts as you spin. They've been around since the Middle Ages — used for astronomy, calendars, and ciphers. The Victorian era added a more playful version: picture wheels in children's books, where turning a disc would swap one scene for another.
+      I wanted to make one. The same circular frame, the same cutout windows — two completely different images depending on where the wheel rests. Same frame. Different story. That's the trick.
     </p>
   </section>
 
@@ -284,7 +293,7 @@
     </div>
 
     <p>
-      It started with a YouTube video showing pages from a Victorian picture book — the disc spins and the illustration changes completely. I tracked it down: the book was made by <a href="https://en.wikipedia.org/wiki/Ernest_Nister" target="_blank">Ernest Nister</a> around 1895. The effect is genuinely magical even knowing exactly how it works.
+      It started with <a href="https://youtu.be/gmRkMsF1wtU?t=13" target="_blank">a YouTube video</a> showing pages from a Victorian picture book — the disc spins and the illustration changes completely. I tracked it down: the book was made by <a href="https://en.wikipedia.org/wiki/Ernest_Nister" target="_blank">Ernest Nister</a> around 1895. The effect is genuinely magical even knowing exactly how it works.
     </p>
     <p>
       I wanted to make one, but couldn't find templates that captured the precise geometry. So I worked it out myself.
@@ -326,120 +335,41 @@
     <h2>The Templates</h2>
 
     <p>
-      The SVG files below are the cut templates I designed. The <strong>front piece</strong> has the image ring cutout, the spoke pattern, and the frame outline. The <strong>back piece</strong> has the full rotating disc with its own spoke pattern. Blue dashed lines are guides (image and slider circles); black lines are cuts and folds.
+      The SVG files below are the cut templates I designed. The <strong>front piece</strong> has the image ring cutout, the spoke pattern, and the frame outline. The <strong>back piece</strong> has the full rotating disc with its own spoke pattern. Blue dashed lines are guides (image and slider circles); black lines are cuts.
     </p>
 
     <div class="svg-preview">
       <div class="svg-card">
-        <svg viewBox="0 0 612 792" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;">
-          <g transform="matrix(2.592593,0,0,2.592593,306,396)">
-            <g transform="matrix(0.9,0,0,0.9,2.241392,-31.819507)">
-              <path d="M-90.107,63.093L-88.948,62.282C-68.628,91.303 -35.428,108.586 -0,108.586C35.428,108.586 68.628,91.303 88.948,62.282L90.107,63.093C69.522,92.492 35.889,110 -0,110C-35.889,110 -69.522,92.492 -90.107,63.093Z" style="fill:none;stroke:#1a1209;stroke-width:1.5px;"/>
-            </g>
-            <g transform="matrix(0.9,0,0,0.9,2.241392,-32.513792)">
-              <path d="M4.924,-8.395L-35.434,-77.483C-36.764,-80.393 -39.422,-81.862 -42.429,-80.384" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M-78.05,-42.77L-79.804,-43.731" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M-38.571,-80.384C-54.029,-72.243 -69.654,-58.09 -78.05,-42.77" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M-42.406,-80.516C-58.21,-72.192 -71.22,-59.396 -79.804,-43.731" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-            </g>
-            <g transform="matrix(0.9,0,0,0.9,2.241392,-32.513792)">
-              <path d="M-76.097,46.155L-77.807,47.192" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M-90.925,-3.687C-91.65,14.192 -87.086,31.893 -77.807,47.192" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M-89.143,-7.098C-89.852,10.387 -85.172,31.192 -76.097,46.155" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M-4.664,-8.66L-84.603,-8.179C-87.923,-8.5 -90.628,-7.013 -90.857,-3.67" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-            </g>
-            <g transform="matrix(0.9,0,0,0.9,2.241392,-32.513792)">
-              <path d="M-50.571,73.473C-35.711,82.89 -15.453,89.396 2.135,88.974" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M-48.709,76.866C-33.515,86.495 -15.8,91.405 2.183,90.974" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M2.135,88.974L2.183,90.974" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M-9.766,-0.11L-49.552,69.311C-51.412,71.913 -51.208,75.03 -48.429,76.902" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-            </g>
-            <g transform="matrix(0.9,0,0,0.9,2.241392,-32.513792)">
-              <path d="M78.05,42.77L79.804,43.731" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M42.406,80.516C58.21,72.192 71.22,59.396 79.804,43.731" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M38.143,80.33C53.6,72.189 69.654,58.09 78.05,42.77" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M-4.963,8.442L35.433,77.484C36.764,80.393 39.85,81.808 42.857,80.33" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-            </g>
-            <g transform="matrix(0.9,0,0,0.9,2.241392,-32.513792)">
-              <path d="M88.714,7.044C89.423,-10.426 85.18,-31.163 76.12,-46.117" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M76.12,-46.117L77.83,-47.154" style="fill:none;stroke:#1a1209;stroke-width:0.5px;"/>
-              <path d="M4.723,8.66L84.603,8.179C87.923,8.5 90.628,6.959 90.857,3.616" style="fill:none;stroke:#1a1209;stroke-width:1px;"/>
-            </g>
-            <g transform="matrix(0.9,0,0,0.9,2.241392,-32.513792)">
-              <path d="M-2.135,-88.974L-2.183,-90.974" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M50.571,-73.527C35.703,-82.96 15.468,-89.397 -2.135,-88.974" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M48.747,-76.842C33.544,-86.487 15.816,-91.406 -2.183,-90.974" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-              <path d="M9.799,0.14L49.599,-69.304C51.452,-71.893 51.207,-75.082 48.429,-76.956" style="fill:none;stroke:#1a1209;stroke-width:0.77px;"/>
-            </g>
-            <g transform="matrix(0.9,0,0,0.9,2.241392,-32.513792)">
-              <circle cx="0" cy="0" r="1.5" style="fill:#333;stroke:#1a1209;stroke-width:0.43px;"/>
-            </g>
-          </g>
-        </svg>
+        <img src="volvelle-images/v7-Front.jpg" alt="Front piece template showing spoke pattern and image ring cutouts" style="width:100%;display:block;" />
         <span>Front piece</span>
       </div>
       <div class="svg-card">
-        <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;">
-          <g transform="matrix(0,2.592593,-2.592593,0,350,350)">
-            <g transform="matrix(0.9,0,-0,0.9,-14.730034,14.730034)">
-              <g transform="matrix(0,-1,1,0,-0.000001,-0.000006)">
-                <path d="M-9.799,0.14L-49.599,-69.304C-51.452,-71.893 -51.207,-75.003 -48.429,-76.876" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M-50.571,-73.019C-35.703,-82.452 -15.468,-89.397 2.135,-88.974" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M-48.747,-76.842C-33.544,-86.487 -15.816,-91.406 2.183,-90.974" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M2.135,-88.974L2.183,-90.974" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-              </g>
-              <g transform="matrix(0,-1,1,0,-0.000001,-0.000006)">
-                <path d="M-88.714,7.124C-89.423,-10.347 -85.18,-31.163 -76.12,-46.117" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M-90.925,3.687C-91.65,-14.176 -87.094,-31.863 -77.83,-47.153" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M-76.12,-46.117L-77.83,-47.154" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M-4.723,8.66L-84.603,8.179C-87.923,8.5 -90.628,7.038 -90.857,3.695" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-              </g>
-              <g transform="matrix(0,-1,1,0,-0.000001,-0.000006)">
-                <path d="M-38.143,80.409C-53.6,72.268 -69.654,58.09 -78.05,42.77" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M-42.406,80.516C-58.21,72.192 -71.22,59.396 -79.804,43.731" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M-78.05,42.77L-79.804,43.731" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M4.963,8.442L-35.433,77.484C-36.764,80.393 -39.422,81.887 -42.429,80.409" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-              </g>
-              <g transform="matrix(0,-1,1,0,-0.000001,-0.000006)">
-                <path d="M50.571,73.552C35.711,82.969 15.453,89.396 -2.135,88.974" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M48.709,76.866C33.515,86.495 15.8,91.405 -2.183,90.974" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M-2.135,88.974L-2.183,90.974" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M9.766,-0.11L49.552,69.311C51.412,71.913 51.208,75.109 48.429,76.981" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-              </g>
-              <g transform="matrix(0,-1,1,0,-0.000001,-0.000006)">
-                <path d="M88.714,-6.591C89.423,10.895 85.172,31.192 76.097,46.155" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M90.925,-3.687C91.65,14.192 87.086,31.893 77.807,47.192" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M76.097,46.155L77.807,47.192" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M4.664,-8.66L84.603,-8.179C87.923,-8.5 90.628,-7.276 90.857,-3.933" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-              </g>
-              <g transform="matrix(0,-1,1,0,-0.000001,-0.000006)">
-                <path d="M37.714,-80.305C53.171,-72.164 69.654,-58.09 78.05,-42.77" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M42.406,-80.516C58.21,-72.192 71.22,-59.396 79.804,-43.731" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M78.05,-42.77L79.804,-43.731" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-                <path d="M-4.924,-8.395L35.434,-77.483C36.764,-80.393 39.422,-81.783 42.429,-80.305" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-              </g>
-              <circle cx="0" cy="0" r="1.5" style="fill:#333;stroke:#1a1209;stroke-width:0.86px;"/>
-            </g>
-            <g transform="matrix(0.900022,0,-0,0.900022,-14.730034,14.730034)">
-              <path d="M70.707,-84.265L70.637,-84.182C50.845,-100.789 25.836,-109.891 0,-109.891C-60.651,-109.891 -109.891,-60.651 -109.891,0C-109.891,60.651 -60.651,109.891 0,109.891C60.651,109.891 109.891,60.651 109.891,0C109.891,-25.836 100.789,-50.845 84.182,-70.637L84.265,-70.707C100.888,-50.896 110,-25.861 110,0C110,60.711 60.711,110 0,110C-60.711,110 -110,60.711 -110,0C-110,-60.711 -60.711,-110 0,-110C25.861,-110 50.896,-100.888 70.707,-84.265Z" style="fill:none;stroke:#333;stroke-width:0.77px;"/>
-            </g>
-          </g>
-        </svg>
+        <img src="volvelle-images/v7-Back.jpg" alt="Back piece template showing the rotating disc with mirrored spoke pattern" style="width:100%;display:block;" />
         <span>Back piece</span>
       </div>
     </div>
 
     <p>
-      To use the templates: print at 100% scale (no scaling to fit), cut along the black lines, pin through the center dot with a brad or eyelet, and layer your artwork behind each piece before assembly. The cutout windows on both pieces need to align with your image art — the front windows show one set of image segments; the back windows show the alternating set.
+      To use the templates: add your artwork as a layer in the SVG file before printing, then cut along the black lines and pin through the center dot with a brad or eyelet. Your art for the rotating image should be a circle with a <strong>15 cm diameter</strong> — use the blue dashed circle on the front piece as a guide. On the back piece, anything beyond the spokes won't be visible, so don't worry about art outside that area. The blue rectangle on the front piece marks the minimum frame size, ensuring the front fully covers the back.
+    </p>
+    <p>
+      The design can be scaled up or down as long as both pieces are scaled proportionally together.
     </p>
 
     <div class="template-block">
-      <p>SVG files — open in Inkscape, Affinity Designer, or any vector editor. Print at actual size.</p>
+      <p>SVG files — open in Inkscape, Affinity Designer, or any vector editor. Add your art as a layer, then print at actual size.</p>
       <div class="dl-links">
         <a class="dl-btn" href="volvelle-images/v7-Front.svg" download>↓ Front Piece (SVG)</a>
         <a class="dl-btn" href="volvelle-images/v7-Back.svg" download>↓ Back Piece (SVG)</a>
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2>Materials</h2>
+    <p>
+      I used 100lb card stock and laminated both pieces. Lamination isn't strictly necessary, but it adds a lot of stability and durability — and makes the wheel slide much more smoothly. I cut the pieces with a Cricut, but a careful hand and an X-Acto knife would work just as well.
+    </p>
   </section>
 
   <section>
@@ -450,10 +380,10 @@
     </blockquote>
 
     <p>
-      Both pieces share the same spoke pattern, but the back is a mirror image, rotated so the spokes interleave instead of overlapping. That's what makes the transition clean: you never see both images at once, only the gradual reveal. The 110° slider cut on the front constrains the rotation so the wheel stops at each complete image.
+      Both pieces share the same spoke pattern, but the back is a mirror image, rotated so the spokes interleave instead of overlapping. At each resting position you see one complete image; mid-rotation, both are visible in fragments — the spokes hide the seams between them. The 110° slider cut on the front constrains the rotation so the wheel stops at each complete image.
     </p>
     <p>
-      For the art itself: I generated the circus images with AI, then composited them so the ringmaster's pose would read well in both states — triumphant arms-out in one rotation, bouquet-clutching absurdity in the other. Getting the circular crop right so that the image reads well through the 35° cutout windows took a few test prints.
+      For the art: each image needs to be cropped circularly and split into six alternating segments. Getting the circular crop positioned so the subject reads clearly through a 35° cutout window took a few test prints to dial in.
     </p>
   </section>
 

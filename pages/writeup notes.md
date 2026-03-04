@@ -47,5 +47,11 @@ starts as a mirror-image of Front Sides spokes.
 Outer ring (border of back piece): 18 cm (diameter) 
 
 
+The design can be scaled, as long as the pieces are scaled proportionally.
 
+The art should be added as a layer to the SVG before printing. The art that is part of the circle transition should be a    
+circle with a diameter of 15 cm.  For the back piece, nothing beyond the spokes will be visible. Use the blue lines on the Front Piece template to guide your   
+designs.  The blue rectangle is a guide for the minimum size of the front piece (we want to make sure that the front piece entirely covers the back piece).
 
+Materials:
+I used 100lb card stock and laminated it. Lamination is not necessary, but it did add quite a bit of stability and durability. It also made it smoother and nicer to slide. I cut the example with my Cricut, but a careful hand and an X-Acto knife would do the trick. 
