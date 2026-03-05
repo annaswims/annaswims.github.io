@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Building a Volvelle</title>
+  <meta property="og:title" content="Building a Volvelle" />
+  <meta property="og:description" content="A rotating image wheel — two completely different images, same frame. Designed from scratch with templates to download." />
+  <meta property="og:image" content="https://annaswims.github.io/pages/volvelle-images/prototype-front-image.jpeg" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
     :root {
       --ink: #1a1209;
@@ -82,7 +87,12 @@
     p:last-child { margin-bottom: 0; }
 
     a { color: var(--rust); }
-    a:hover { color: var(--gold); }
+    a:hover { color: #5a1c08; }
+    a:focus-visible {
+      outline: 2px solid var(--rust);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
 
     /* ── Images ── */
     .photo-pair {
@@ -104,7 +114,7 @@
     }
     figcaption {
       font-size: 0.78rem;
-      color: var(--muted);
+      color: #4a3b28;
       font-style: italic;
       margin-top: 6px;
       text-align: center;
@@ -183,9 +193,10 @@
       border-radius: 3px;
       transition: background 0.15s;
     }
-    .dl-btn:hover {
-      background: var(--ink);
-      color: var(--gold);
+    .dl-btn:hover { background: var(--ink); color: var(--aged); }
+    .dl-btn:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
     }
 
     /* ── SVG preview ── */
@@ -226,11 +237,8 @@
     }
 
     @media (max-width: 520px) {
-      .photo-pair, .inspo-strip, .svg-preview {
+      .photo-pair, .svg-preview {
         grid-template-columns: 1fr;
-      }
-      .inspo-strip {
-        grid-template-columns: repeat(3, 1fr);
       }
     }
   </style>
@@ -264,7 +272,7 @@
     </div>
 
     <p>
-      It started with <a href="https://youtu.be/gmRkMsF1wtU?t=13" target="_blank">a YouTube video</a> showing pages from a Victorian picture book — the disc spins and the illustration changes completely. I tracked it down: the book was made by <a href="https://en.wikipedia.org/wiki/Ernest_Nister" target="_blank">Ernest Nister</a> around 1895. The effect is genuinely magical even knowing exactly how it works.
+      It started with <a href="https://youtu.be/gmRkMsF1wtU?t=13" target="_blank" aria-label="a YouTube video (opens in new tab)">a YouTube video</a> showing pages from a Victorian picture book — the disc spins and the illustration changes completely. I tracked it down: the book was made by <a href="https://en.wikipedia.org/wiki/Ernest_Nister" target="_blank" aria-label="Ernest Nister on Wikipedia (opens in new tab)">Ernest Nister</a> around 1895. The effect is genuinely magical even knowing exactly how it works.
     </p>
     <p>
       A <strong>volvelle</strong> (also called a wheel chart or turning wheel) is a paper mechanism where two circular pieces rotate against each other, revealing different images through cutouts as you spin. They've been around since the Middle Ages — used for astronomy, calendars, and ciphers. I couldn't find templates that captured the precise geometry, so I worked it out myself.
@@ -318,14 +326,14 @@
     </p>
 
     <div class="svg-preview">
-      <div class="svg-card">
+      <figure class="svg-card">
         <img src="volvelle-images/v7-Front.jpg" alt="Front piece template showing spoke pattern and image ring cutouts" style="width:100%;display:block;" />
-        <span>Front piece</span>
-      </div>
-      <div class="svg-card">
+        <figcaption>Front piece</figcaption>
+      </figure>
+      <figure class="svg-card">
         <img src="volvelle-images/v7-Back.jpg" alt="Back piece template showing the rotating disc with mirrored spoke pattern" style="width:100%;display:block;" />
-        <span>Back piece</span>
-      </div>
+        <figcaption>Back piece</figcaption>
+      </figure>
     </div>
 
     <p>
@@ -385,7 +393,7 @@
     </div>
 
     <p>
-      When I got stuck on what the center looked like, <a href="https://www.extremepapercrafting.com/2022/12/2003-turn-turn-turn.html" target="_blank">Extreme Cards and Papercrafting</a> had a rough template that helped me understand the overall structure — even though I ended up reworking the geometry from scratch.
+      When I got stuck on what the center looked like, <a href="https://www.extremepapercrafting.com/2022/12/2003-turn-turn-turn.html" target="_blank" aria-label="Extreme Cards and Papercrafting (opens in new tab)">Extreme Cards and Papercrafting</a> had a rough template that helped me understand the overall structure — even though I ended up reworking the geometry from scratch.
     </p>
 
     <div class="photo-single">
@@ -404,7 +412,7 @@
 </main>
 
 <footer>
-  Made with paper, Affinity Designer, and stubbornness. Inspired by <a href="https://en.wikipedia.org/wiki/Ernest_Nister" target="_blank">Ernest Nister</a>, c. 1895.
+  Made with paper, Affinity Designer, and stubbornness. Inspired by <a href="https://en.wikipedia.org/wiki/Ernest_Nister" target="_blank" aria-label="Ernest Nister on Wikipedia (opens in new tab)">Ernest Nister</a>, c. 1895.
 </footer>
 
 </body>
