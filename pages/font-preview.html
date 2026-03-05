@@ -43,6 +43,7 @@
     background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
     padding: 8px 14px; color: var(--text); font-size: 13px;
     font-family: inherit; outline: none; transition: border-color .2s;
+    -webkit-appearance: none; appearance: none;
   }
   input[type=text]:focus, input[type=search]:focus { border-color: var(--accent); }
   input::placeholder { color: var(--text-dim); }
@@ -66,7 +67,7 @@
   .card:hover { border-color: rgba(232,197,71,.35); background: var(--surface2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,.4); z-index: 2; position: relative; }
 
   .card-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
-  .fname { font-size: 10px; letter-spacing: .07em; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fname { font-size: 10px; letter-spacing: .07em; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
   .tags { display: flex; gap: 4px; flex-shrink: 0; }
   .tag { font-size: 8px; padding: 2px 6px; border-radius: 8px; letter-spacing: .06em; text-transform: uppercase; }
   .tag-sans { background: rgba(232,197,71,.12); color: var(--accent); border: 1px solid rgba(232,197,71,.3); }
@@ -162,6 +163,17 @@ let activeWeight = 'all';
 let activeSubset = 'all';
 let search = '';
 const loaded = new Set();
+const fontObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const card = entry.target;
+    fontObserver.unobserve(card);
+    const family = card.dataset.family;
+    const weights = JSON.parse(card.dataset.weights);
+    loadFont(family, weights);
+    card.querySelector('.preview').style.fontFamily = `'${family}',sans-serif`;
+  });
+}, { rootMargin: '200px' });
 
 function cat(f) {
   const c = (f.c || '').toLowerCase();
@@ -188,8 +200,15 @@ let allFonts = [];
 function loadFont(family, weights) {
   if (loaded.has(family)) return;
   loaded.add(family);
-  const wgts = weights.filter(w => !String(w).endsWith('i')).join(';') || '400';
-  const url = `https://fonts.googleapis.com/css2?family=${family.replace(/ /g,'+')}:wght@${wgts}&display=swap`;
+  const regular = weights.filter(w => !String(w).endsWith('i'));
+  let url;
+  if (regular.length) {
+    url = `https://fonts.googleapis.com/css2?family=${family.replace(/ /g,'+')}:wght@${regular.join(';')}&display=swap`;
+  } else {
+    const italic = weights.filter(w => String(w).endsWith('i')).map(w => String(w).slice(0,-1));
+    if (!italic.length) return;
+    url = `https://fonts.googleapis.com/css2?family=${family.replace(/ /g,'+')}:ital,wght@${italic.map(w=>`1,${w}`).join(';')}&display=swap`;
+  }
   const l = document.createElement('link'); l.rel='stylesheet'; l.href=url;
   document.head.appendChild(l);
 }
@@ -218,11 +237,12 @@ function render() {
   filtered.forEach((f, i) => {
     const weights = (f.w || []).filter(w => !String(w).endsWith('i'));
     const dw = weights.includes('700')?700:weights.includes('400')?400:(+weights[0]||400);
-    loadFont(f.f, f.w || []);
 
     const card = document.createElement('div');
     card.className = 'card';
     card.style.animationDelay = `${Math.min(i*15,280)}ms`;
+    card.dataset.family = f.f;
+    card.dataset.weights = JSON.stringify(f.w || []);
 
     const wchips = weights.map(w => `<span class="wchip">${WL[+w]||w}</span>`).join('');
     card.innerHTML = `
@@ -230,9 +250,10 @@ function render() {
         <span class="fname" title="${f.f}">${f.f}</span>
         <div class="tags">${tagHtml(f._cat)}</div>
       </div>
-      <div class="preview" style="font-family:'${f.f}',sans-serif;font-weight:${dw};font-size:${fontSize}px">${escHtml(previewText)}</div>
+      <div class="preview" style="font-weight:${dw};font-size:${fontSize}px">${escHtml(previewText)}</div>
       <div class="weights">${wchips}</div>`;
     grid.appendChild(card);
+    fontObserver.observe(card);
   });
 }
 
