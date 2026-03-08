@@ -61,4 +61,13 @@ Assembly:
 Put the back piece behind the front piece and slide the tab into the slot, as far left as it will go (when you're looking at it from the front). then tuck the tab (center of the back piece) in to the nearest spoke of the front piece. Do this for all six sections. Then on the front size, stick a small piece of tape to the star shape on the front, where all of the tabs from the back are sticking through. This will help the back pice hold its shape. Make sure tha the tape only is on the tabs sticking through from the back, not the front pice so that it can move freely. Then, add a brad to the center that holds both pieces together.
 
 
+Found later
+https://angelapoole.co.uk/product/angela-poole-magic-windows-slide-reveal-die-set-circle/
+### Cricut measurements
+
 Cricut maximum print then cut rectangle 6.823” x 9.323” on a letter paper
+
+Front rectangle
+image: 5.25
+interior start: 1.2"
+6.65"*7.35"
