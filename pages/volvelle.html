@@ -263,35 +263,9 @@
 <main>
 
   <section>
-    <h2>The Inspiration</h2>
-
-    <div class="inspo-strip">
-      <figure>
-        <img src="volvelle-images/1boat.png" alt="Victorian children's book page showing children in a boat, with a rotating wheel mechanism visible" />
-        <figcaption>The original</figcaption>
-      </figure>
-      <figure>
-        <img src="volvelle-images/2boat.png" alt="The same book page with the wheel turned partway, showing a different image" />
-        <figcaption>Wheel turned</figcaption>
-      </figure>
-      <figure>
-        <img src="volvelle-images/3boat.png" alt="The wheel fully rotated to reveal a third image" />
-        <figcaption>Fully rotated</figcaption>
-      </figure>
-    </div>
-
-    <p>
-      It started with <a href="https://youtu.be/gmRkMsF1wtU?t=13" target="_blank" aria-label="a YouTube video (opens in new tab)">a YouTube video</a> showing pages from a Victorian picture book — the disc spins and the illustration changes completely. I tracked it down: the book was made by <a href="https://en.wikipedia.org/wiki/Ernest_Nister" target="_blank" aria-label="Ernest Nister on Wikipedia (opens in new tab)">Ernest Nister</a> around 1895. The effect is genuinely magical even knowing exactly how it works.
-    </p>
-    <p>
-      A <strong>volvelle</strong> (also called a wheel chart or turning wheel) is a paper mechanism where two circular pieces rotate against each other, revealing different images through cutouts as you spin. They've been around since the Middle Ages — used for astronomy, calendars, and ciphers. I couldn't find templates that captured the precise geometry, so I worked it out myself.
-    </p>
-  </section>
-
-  <section>
     <h2>The Result</h2>
     <p>
-      The same circular frame, the same cutout windows — two completely different images depending on where the wheel rests. Same frame. Different story.
+      Spin the wheel and the image changes completely. Same frame, same cutout windows — two entirely different pictures depending on where the disc rests.
     </p>
 
     <div class="photo-pair" style="max-width:520px;margin-left:auto;margin-right:auto;">
@@ -316,6 +290,32 @@
   </section>
 
   <section>
+    <h2>The Inspiration</h2>
+
+    <div class="inspo-strip">
+      <figure>
+        <img src="volvelle-images/1boat.png" alt="Victorian children's book page showing children in a boat, with a rotating wheel mechanism visible" />
+        <figcaption>The original</figcaption>
+      </figure>
+      <figure>
+        <img src="volvelle-images/2boat.png" alt="The same book page with the wheel turned partway, showing a different image" />
+        <figcaption>Wheel turned</figcaption>
+      </figure>
+      <figure>
+        <img src="volvelle-images/3boat.png" alt="The wheel fully rotated to reveal a third image" />
+        <figcaption>Fully rotated</figcaption>
+      </figure>
+    </div>
+
+    <p>
+      It started with <a href="https://youtu.be/gmRkMsF1wtU?t=13" target="_blank" aria-label="a YouTube video (opens in new tab)">a YouTube video</a> showing pages from a Victorian picture book — the disc spins and the illustration changes completely. I tracked it down: the book was made by <a href="https://en.wikipedia.org/wiki/Ernest_Nister" target="_blank" aria-label="Ernest Nister on Wikipedia (opens in new tab)">Ernest Nister</a> around 1895.
+    </p>
+    <p>
+      A <strong>volvelle</strong> (also called a wheel chart or turning wheel) is a paper mechanism where two circular pieces rotate against each other, revealing different images through cutouts as you spin. They've been around since the Middle Ages — used for astronomy, calendars, and ciphers. The effect is genuinely magical even knowing exactly how it works. I couldn't find templates that captured the precise geometry, so I worked it out myself.
+    </p>
+  </section>
+
+  <section>
     <h2>How It Works</h2>
 
     <blockquote>
@@ -324,6 +324,48 @@
 
     <p>
       Both pieces share the same spoke pattern, but the back is a mirror image, rotated so the spokes interleave instead of overlapping. At each resting position you see one complete image; mid-rotation, both are visible in fragments — the spokes hide the seams between them. The 110° slider cut on the front constrains the rotation so the wheel stops at each complete image.
+    </p>
+  </section>
+
+  <section>
+    <h2>Working Out the Geometry</h2>
+
+    <div class="photo-single">
+      <figure>
+        <img src="volvelle-images/geometry-paper.jpeg" alt="Hand-drawn geometry sketch in pencil and pink marker, showing circles, spokes, and radius annotations" style="width:65%;display:block;margin:0 auto;" />
+        <figcaption>Sketching the geometry — the inner spoke pattern took several attempts to get right</figcaption>
+      </figure>
+    </div>
+
+    <p>
+      I knew roughly what the mechanism needed to do, but translating that into precise cut lines meant working out every angle from scratch. The tricky part was the center: the spokes on each piece have to interleave exactly, so the spoke widths, gaps, and offsets all had to be calculated — not eyeballed. Several attempts on paper before I touched any software.
+    </p>
+
+    <div class="specs">
+      <h3>Final Measurements</h3>
+      <ul>
+        <li><strong>Image ring:</strong> 15 cm diameter — six 35–36° cutout windows</li>
+        <li><strong>Inner circle (spoke anchor):</strong> 1.6 cm diameter</li>
+        <li><strong>Center pin dot:</strong> 0.25 cm</li>
+        <li><strong>Front frame:</strong> 19 × 21 cm rectangle</li>
+        <li><strong>Slider arc:</strong> 110° cut along an 18 cm circle</li>
+        <li><strong>Back outer ring:</strong> 18 cm diameter</li>
+      </ul>
+    </div>
+
+    <p>
+      Partway through, I got stuck on what the center structure should actually look like. <a href="https://www.extremepapercrafting.com/2022/12/2003-turn-turn-turn.html" target="_blank" aria-label="Extreme Cards and Papercrafting (opens in new tab)">Extreme Cards and Papercrafting</a> had a rough template that gave me enough to understand the shape — even though the measurements weren't usable and I had to derive everything myself.
+    </p>
+
+    <div class="photo-single">
+      <figure>
+        <img src="volvelle-images/template-inspo.jpg" alt="A rough volvelle template diagram showing the front and back piece shapes" style="width:40%;display:block;margin:0 auto;" />
+        <figcaption>The reference that unlocked the center — not precise, but enough to understand the structure</figcaption>
+      </figure>
+    </div>
+
+    <p>
+      I started in Inkscape and finished in Affinity Designer, which I found much easier to learn. Honestly, working out the geometry was one of the most satisfying parts of the whole project.
     </p>
   </section>
 
@@ -373,48 +415,6 @@
       <li>On the back of the front piece, place a small piece of tape over the star-shaped cluster of tabs to hold them in place. Make sure the tape only touches the tabs — not the front piece itself — so the wheel can still rotate freely.</li>
       <li>Insert a brad through the center hole to join both pieces together.</li>
     </ol>
-  </section>
-
-  <section>
-    <h2>Working Out the Geometry</h2>
-
-    <div class="photo-single">
-      <figure>
-        <img src="volvelle-images/geometry-paper.jpeg" alt="Hand-drawn geometry sketch in pencil and pink marker, showing circles, spokes, and radius annotations" style="width:65%;display:block;margin:0 auto;" />
-        <figcaption>Sketching the geometry — the inner spoke pattern took several attempts to get right</figcaption>
-      </figure>
-    </div>
-
-    <p>
-      The key insight is that each piece — front and back — has a ring of image visible through cutout sections, and a set of spokes in the center that hold everything together and hide the seams. The back piece is a mirror of the front's spoke pattern, offset so the spokes interleave as it rotates. Getting those angles right required actual paper-and-pencil geometry before I touched any software.
-    </p>
-
-    <div class="specs">
-      <h3>Final Measurements</h3>
-      <ul>
-        <li><strong>Image ring:</strong> 15 cm diameter — six 35–36° cutout windows</li>
-        <li><strong>Inner circle (spoke anchor):</strong> 1.6 cm diameter</li>
-        <li><strong>Center pin dot:</strong> 0.25 cm</li>
-        <li><strong>Front frame:</strong> 19 × 21 cm rectangle</li>
-        <li><strong>Slider arc:</strong> 110° cut along an 18 cm circle</li>
-        <li><strong>Back outer ring:</strong> 18 cm diameter</li>
-      </ul>
-    </div>
-
-    <p>
-      When I got stuck on what the center looked like, <a href="https://www.extremepapercrafting.com/2022/12/2003-turn-turn-turn.html" target="_blank" aria-label="Extreme Cards and Papercrafting (opens in new tab)">Extreme Cards and Papercrafting</a> had a rough template that helped me understand the overall structure — even though I ended up reworking the geometry from scratch.
-    </p>
-
-    <div class="photo-single">
-      <figure>
-        <img src="volvelle-images/template-inspo.jpg" alt="A rough volvelle template diagram showing the front and back piece shapes" style="width:40%;display:block;margin:0 auto;" />
-        <figcaption>The reference that unlocked the center — not precise, but enough to understand the structure</figcaption>
-      </figure>
-    </div>
-
-    <p>
-      I started in Inkscape and finished in Affinity Designer, which I found much easier to learn. Working out the geometry from scratch was genuinely one of the most satisfying parts of the whole project.
-    </p>
   </section>
 
 
