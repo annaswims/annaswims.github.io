@@ -16,7 +16,7 @@ python3 -m http.server
 - `index.html` — root landing page (currently minimal/placeholder)
 - `pages/font-preview.html` — main interactive app: a font browser for MakerWorld fonts
 - `pages/fonts.json` — font metadata (3.5MB, sourced from MakerWorld's OpenSCAD font list)
-- `pages/volvelle-images/` — assets for a physical craft project (a rotating paper volvelle/wheel)
+- `pages/magic-window-images/` — assets for a physical craft project (a rotating paper volvelle/wheel)
 - `pages/writeup notes.md` — notes for a planned writeup on the volvelle project
 
 ## Font Preview App Architecture
