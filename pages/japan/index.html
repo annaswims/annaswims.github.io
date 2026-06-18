@@ -28,7 +28,7 @@
 const { useState, useEffect, useRef } = React;
 
 const familyColors = {
-  Chris:"#7a9cbf", Anna:"#c4816a", Zoe:"#9b7fc7", Emily:"#5faa82", Family:"#d4b896"
+  Chris:"#8a8d92", Anna:"#8088cc", Zoe:"#b5673a", Emily:"#5faa82", Family:"#d4b896"
 };
 
 const tagColors = {
@@ -39,7 +39,7 @@ const tagColors = {
   "Fashion":"#b07090","Craft":"#8a7060","Onsen":"#5090a0",
   "Adventure":"#c04040","Cooking":"#c4816a","Street Art":"#8b6bb5",
   "Recovery":"#888888","Gentle":"#7a9a7a","Special Night":"#d4a017",
-  "Chris Solo":"#7a9cbf","Special":"#d4a017","Travel Day":"#6a7a9a",
+  "Chris Solo":"#8a8d92","Special":"#d4a017","Travel Day":"#6a7a9a",
 };
 
 const typeColors = {
@@ -50,364 +50,312 @@ const typeColors = {
 const days = [
   {
     day:1, date:"Sat Jul 11 → Sun Jul 12", location:"Indianapolis → Tokyo", emoji:"✈️",
-    color:"#7a9cbf", tags:["Travel Day"],
-    summary:"Depart Indianapolis morning of July 11. Cross the date line. Arrive Tokyo evening of July 12.",
+    color:"#6a7a9a", tags:["Travel Day"],
+    summary:"Depart Indianapolis July 11. Cross the date line. Arrive Tokyo HANEDA the evening of July 12.",
     morningWalk:null, pairings:[],
     schedule:[
-      {time:"Morning Jul 11",type:"transport",icon:"✈️",label:"Depart IND — morning flight to connection (ORD or SEA)",detail:"Allow plenty of time at your connection airport. Book seats together in advance.",who:"Family"},
-      {time:"Overnight",type:"transport",icon:"✈️",label:"Cross the Pacific — cross the date line",detail:"You lose July 11 crossing the date line. Try to sleep on the long leg.",who:"Family"},
-      {time:"Afternoon Jul 12",type:"transport",icon:"🚉",label:"Arrive Narita (NRT) — clear immigration",detail:"Have passports and landing cards ready. Allow 90min for immigration, customs, and bags.",who:"Family"},
-      {time:"Evening Jul 12",type:"transport",icon:"🚅",label:"N'EX Narita Express → Shinjuku (~90min)",detail:"Buy N'EX Round-Trip Ticket at airport: ¥5,000/adult, ¥2,500/child. All reserved seats, direct to Shinjuku.",who:"Family"},
-      {time:"Evening Jul 12",type:"activity",icon:"🏨",label:"Check in — MIMARU Tokyo Shinjuku West",detail:"Two-bedroom apartment. Kids claim the tatami room. Short gentle walk around the block.",who:"Family"},
-      {time:"Evening",type:"food",icon:"🍜",label:"First ramen — Shinjuku neighborhood",detail:"Find the nearest ramen shop. Chris and Zoe practice ordering in Japanese.",who:"Family"},
-      {time:"9:00pm",type:"sleep",icon:"😴",label:"Early night — reset to Tokyo time",detail:"Jet lag is real. Sleep by 9-10pm Tokyo time even if it feels wrong.",who:"Family"},
+      {time:"Morning Jul 11",type:"transport",icon:"✈️",label:"Depart IND via Chicago — UA3534 → UA881",detail:"United conf AFX330. IND→ORD 10:45am, then ORD→HND on the Boeing 787-10 Dreamliner.",who:"Family",url:"https://www.united.com"},
+      {time:"Overnight",type:"transport",icon:"✈️",label:"Cross the Pacific — you lose July 11",detail:"~13h leg. Try to sleep and reset toward Tokyo time.",who:"Family"},
+      {time:"3:25pm Jul 12",type:"transport",icon:"🚉",label:"Arrive Tokyo HANEDA (HND)",detail:"Allow ~90min for immigration and bags. Passports and landing forms ready.",who:"Family",map:"Haneda Airport Terminal 3"},
+      {time:"~4:30pm",type:"activity",icon:"💴",label:"Suica + cash at the airport",detail:"Buy Suica before the monorail — load ~¥3,000 each for the adults and Zoe, ¥2,000 for Emily. Pull ~¥40–50k cash from the Haneda ATM (better rate than the exchange counter).",who:"Family"},
+      {time:"~5:00pm",type:"transport",icon:"🚝",label:"Tokyo Monorail → Hamamatsuchō → Shinjuku (JR Yamanote)",detail:"~55min total. Emily leads from the front car.",who:"Family"},
+      {time:"~6:30pm",type:"activity",icon:"🏨",label:"Check in — MIMARU Tokyo Shinjuku West",detail:"Apartment-style room with coin laundry. Short walk around the block.",who:"Family",map:"MIMARU Tokyo Shinjuku West",url:"https://mimaruhotels.com/en/hotel/shinjuku-west/"},
+      {time:"Evening",type:"food",icon:"🍜",label:"First ramen — Shinjuku",detail:"Keep it simple. Arrive, eat, sleep.",who:"Family"},
+      {time:"9:00pm",type:"sleep",icon:"😴",label:"Early night — reset to Tokyo time",detail:"Jet lag is real. Sleep even if it feels wrong.",who:"Family"},
     ],
-    notes:"You depart July 11 and arrive July 12 — the date line takes July 11 from you. Arrive, eat, sleep. Japan will still be there tomorrow."
+    notes:"You depart July 11 and arrive July 12 — the date line takes July 11. Arrive, eat, sleep. Japan will still be there tomorrow."
   },
   {
-    day:2, date:"Mon Jul 13", location:"Tokyo — Harajuku, Shibuya & Akihabara", emoji:"🌸",
+    day:2, date:"Mon Jul 13", location:"Tokyo — Harajuku, Omotesandō & Akihabara", emoji:"🌸",
     color:"#e8a8c0", tags:["Whole Family","Fashion"],
-    summary:"First full day in Japan. Ease in gently — jet lag lurks around 3pm.",
-    morningWalk:{who:"Chris solo (+ Anna & Emily if awake)",route:"Shinjuku neighborhood streets at dawn. Specialty coffee shop on the way back.",duration:"~1 hour",coffee:"% Arabica or Bear Pond Espresso, Shinjuku area"},
+    summary:"First full day. Fashion, a forested shrine, stationery, and the anime district. Ease in — jet lag lurks at 3pm.",
+    morningWalk:{who:"Chris solo (+ Anna & Emily if awake)",route:"Shinjuku neighborhood streets at dawn; specialty coffee on the way back.",duration:"~1 hour",coffee:"% Arabica or a Shinjuku kissaten"},
     pairings:[],
     schedule:[
-      {time:"6:00am",type:"walk",icon:"☕",label:"Chris's morning walk — Shinjuku dawn streets",detail:"Solo, or with Anna and Emily if they wake. Dawn Tokyo is extraordinary.",who:"Chris"},
-      {time:"8:00am",type:"food",icon:"🏪",label:"First 7-Eleven run — warm-up for Zoe's konbini day later",detail:"Everyone chooses something. Zoe notes everything she wants to come back for.",who:"Family"},
-      {time:"9:30am",type:"transport",icon:"🚇",label:"Shinjuku → Harajuku (JR Yamanote Line, ~10min)",detail:"Suica IC cards. Exit Harajuku Station, Takeshita exit.",who:"Family"},
-      {time:"10:00am",type:"activity",icon:"🎀",label:"Takeshita Street — kawaii fashion, pink crepes",detail:"Emily's first big Japan moment. Zoe hunts soft goth pieces. Emily wants everything pink.",who:"Family"},
-      {time:"11:00am",type:"activity",icon:"🌳",label:"Meiji Jingu Outer Garden — forested park walk",detail:"A vast ancient forested park in central Tokyo. Anna spots the street art woven into the surrounding neighborhood.",who:"Family"},
-      {time:"12:30pm",type:"food",icon:"🍱",label:"Lunch — Omotesando",detail:"Wide tree-lined boulevard. Find somewhere with outdoor seating in the shade.",who:"Family"},
-      {time:"2:00pm",type:"rest",icon:"🌡️",label:"Midday rest — Shibuya indoor (Hikarie or 109)",detail:"July heat peaks 1-3pm. Air conditioning essential.",who:"Family"},
-      {time:"4:00pm",type:"activity",icon:"🌇",label:"Shibuya Crossing + Shibuya Sky rooftop (~¥2,500/adult)",detail:"Time the crossing as a family, then the 4:30pm Shibuya Sky slot for golden hour views at 229m. Book in advance.",who:"Family"},
-      {time:"6:00pm",type:"transport",icon:"🚇",label:"Shibuya → Akihabara (JR Yamanote Line, ~20min)",detail:"Zoe leads from here. Electric Town exit.",who:"Family"},
-      {time:"6:30pm",type:"activity",icon:"🎮",label:"Akihabara — anime district evening",detail:"Multi-floor game centres, Ghibli goods, manga shops. Zoe and Emily lead.",who:"Family"},
-      {time:"8:00pm",type:"food",icon:"🍣",label:"Conveyor belt sushi near Akihabara",detail:"Zoe's perfect meal. Everyone picks exactly what they want.",who:"Family"},
-      {time:"9:00pm",type:"transport",icon:"🚇",label:"Akihabara → Shinjuku (JR Chuo Line, ~20min)",detail:"Back to MIMARU.",who:"Family"},
+      {time:"8:00am",type:"food",icon:"🏪",label:"First 7-Eleven run",detail:"Warm-up for Zoe's dedicated konbini morning tomorrow.",who:"Family"},
+      {time:"9:30am",type:"transport",icon:"🚇",label:"Shinjuku → Harajuku (JR Yamanote, ~10min)",detail:"Suica. Takeshita exit.",who:"Family"},
+      {time:"10:00am",type:"activity",icon:"🎀",label:"Takeshita Street — kawaii fashion, pink crepes",detail:"Emily: everything pink. Zoe: soft-goth pieces. Cute candy stops.",who:"Family",map:"Takeshita Street Harajuku"},
+      {time:"11:30am",type:"activity",icon:"🌳",label:"Meiji Jingu — forested shrine walk",detail:"Free; a vast ancient forest in central Tokyo. Shinto shrine — see the on-the-day etiquette habits.",who:"Family",map:"Meiji Jingu",url:"https://www.meijijingu.or.jp/en/"},
+      {time:"12:30pm",type:"food",icon:"🍱",label:"Lunch — Omotesandō",detail:"Tree-lined boulevard. Picks: Maisen tonkatsu, Afuri yuzu ramen.",who:"Family",map:"restaurants Omotesando Tokyo"},
+      {time:"1:30pm",type:"rest",icon:"🌡️",label:"Midday heat rest — optional mipig Cafe",detail:"1–3pm heat. Optional gentle micro-pig cafe in Harajuku (chosen over a hedgehog cafe on welfare grounds). Reserve ahead.",who:"Emily",map:"mipig cafe Harajuku",url:"https://mipig.cafe/"},
+      {time:"3:00pm",type:"activity",icon:"✏️",label:"Stationery + start the trip diaries",detail:"Mark'Style Tokyo (Omotesandō Hills), Bunbougu Cafe, or Loft/Hands Shibuya. Each girl starts a Traveler's Notebook to grow across the trip.",who:"Zoe",map:"Marks Style Tokyo Omotesando Hills"},
+      {time:"4:30pm",type:"transport",icon:"🚇",label:"Harajuku → Akihabara (JR Yamanote, ~25min)",detail:"Zoe leads from here.",who:"Family"},
+      {time:"5:00pm",type:"activity",icon:"🎮",label:"Akihabara — anime district",detail:"Animate, Mandarake, Yodobashi. Zoe: Dungeon Meshi, Yuru Camp, Ghibli goods.",who:"Zoe",map:"Akihabara Electric Town"},
+      {time:"6:30pm",type:"food",icon:"🍣",label:"Conveyor-belt sushi near Akihabara",detail:"Picks: Uobei/Genki Sushi, Numazuko. Zoe loves salmon.",who:"Family",map:"conveyor belt sushi Akihabara"},
     ],
-    notes:"Don't push through the 3pm jet lag wall. The indoor Shibuya rest is deliberate."
+    notes:"Don't push through the 3pm jet-lag wall. Shibuya Sky and the Crossing were cut — not the right fit. Stationery added for Zoe."
   },
   {
     day:3, date:"Tue Jul 14", location:"Tokyo — Konbini Morning, Asakusa & teamLab", emoji:"🏮",
-    color:"#c8a882", tags:["Whole Family","Art"],
-    summary:"Zoe's konbini morning. Historic architecture, yukata, and immersive digital art.",
-    morningWalk:{who:"Chris solo",route:"Nakameguro canal at dawn — one of Tokyo's most beautiful urban waterways.",duration:"~1.5 hours",coffee:"Nakameguro has some of Tokyo's best third-wave coffee"},
+    color:"#c8a882", tags:["Whole Family","Art","Culture"],
+    summary:"Zoe's konbini morning. Yukata first, then Senso-ji as the backdrop, then immersive digital art. (Ghibli Museum is closed Tuesdays.)",
+    morningWalk:{who:"Chris solo",route:"Sumida riverside near Asakusa at dawn — the river with Skytree across the water.",duration:"~1 hour",coffee:"An Asakusa kissaten opens early"},
     pairings:[],
     schedule:[
-      {time:"6:00am",type:"walk",icon:"☕",label:"Chris's walk — Nakameguro canal at dawn",detail:"Solo. Canal at dawn is quiet and extraordinary. Canal-side cafes open at 7am.",who:"Chris"},
-      {time:"8:00am",type:"food",icon:"🏪",label:"DEDICATED KONBINI MORNING — Zoe leads the family",detail:"The unhurried 7-Eleven experience. Zoe's list: onigiri, egg salad sandwich, matcha latte, karaage, strawberry daifuku. Allow 45 minutes.",who:"Family"},
-      {time:"9:30am",type:"transport",icon:"🚇",label:"Shinjuku → Asakusa (Tokyo Metro Ginza Line, ~30min)",detail:"Suica cards.",who:"Family"},
-      {time:"10:00am",type:"activity",icon:"🏯",label:"Senso-ji precinct — historic architecture & market walk",detail:"Tokyo's oldest temple. The Kaminarimon gate, five-storey pagoda, incense courtyard.",who:"Family"},
-      {time:"11:00am",type:"activity",icon:"👘",label:"Yukata rental — family dress-up (~¥3,000-4,000/person)",detail:"Hair styling for the girls. Wear them for the afternoon.",who:"Family"},
-      {time:"12:00pm",type:"food",icon:"🍡",label:"Nakamise street food lunch",detail:"Ningyo-yaki, melonpan, tempura sticks. Eat as you walk.",who:"Family"},
-      {time:"1:30pm",type:"transport",icon:"🚇",label:"Asakusa → Toyosu (Yurikamome Line, ~30min)",detail:"Return yukata if rented. Head to Toyosu for teamLab.",who:"Family"},
-      {time:"3:00pm",type:"activity",icon:"🌈",label:"teamLab Planets — immersive digital art (book in advance)",detail:"~¥3,600/adult, ¥1,500/child. Wear shorts — some rooms have shallow water. Allow 1.5-2 hours.",who:"Family"},
-      {time:"5:30pm",type:"activity",icon:"🗼",label:"Tokyo Skytree — sunset observation deck (~¥2,100/adult)",detail:"Book the 6pm slot for golden hour into dusk. The best view of Tokyo available.",who:"Family"},
-      {time:"7:30pm",type:"food",icon:"🍤",label:"Dinner — Asakusa tempura or tonkatsu",detail:"Traditional sit-down dinner near the historic district.",who:"Family"},
-      {time:"9:00pm",type:"transport",icon:"🚇",label:"Asakusa → Shinjuku (~30min)",detail:"Home.",who:"Family"},
+      {time:"8:00am",type:"food",icon:"🏪",label:"KONBINI MORNING — Zoe leads",detail:"A meal AND an event. Onigiri, egg-salad sando, matcha latte, karaage, daifuku. ~45 min.",who:"Zoe"},
+      {time:"9:30am",type:"transport",icon:"🚇",label:"Shinjuku → Asakusa (~35min, transfer to Ginza Line)",detail:"Suica. The Ginza Line doesn't serve Shinjuku — transfer once.",who:"Family"},
+      {time:"10:00am",type:"activity",icon:"👘",label:"Yukata rental + hair FIRST",detail:"Dress before the temple so the outfits become the backdrop. Shops are 1–3min from Senso-ji (e.g., Rikawafuku, opens 9am). Book the hair-set plan.",who:"Family",map:"Rikawafuku kimono rental Asakusa"},
+      {time:"11:15am",type:"activity",icon:"🏯",label:"Senso-ji + Nakamise — in yukata, the photo block",detail:"Kaminarimon, the pagoda, incense courtyard. 🎎 Buddhist temple — palms together, no clapping. The Asakusa Shrine alongside is Shinto (you do clap there).",who:"Family",map:"Senso-ji Temple Asakusa",url:"https://www.senso-ji.jp/about/index_e.html"},
+      {time:"12:30pm",type:"food",icon:"🍡",label:"Nakamise street-food lunch (still in yukata)",detail:"Kibi-dango Azuma, age-manju at Kokonoe, imo-yokan at Funawa. Summer heat — the outfits run warm, that's the trade for the photos.",who:"Family",map:"Nakamise-dori Asakusa"},
+      {time:"1:30pm",type:"activity",icon:"👘",label:"Return yukata",detail:"Before teamLab (water + barefoot — no yukata there). Return deadline ~5:30pm.",who:"Family"},
+      {time:"2:00pm",type:"transport",icon:"🚇",label:"→ Toyosu (Yurikamome Line, ~30min)",detail:"",who:"Family"},
+      {time:"3:00pm",type:"activity",icon:"🌈",label:"teamLab Planets — BOOKED (15:00–15:30 entry)",detail:"QR e-tickets, ¥12,700. You wade through water — wear/roll-up shorts (free rentals available). Hold Emily's hand; mirrored floors. ~1.5–2h.",who:"Family",map:"teamLab Planets Toyosu",url:"https://www.teamlab.art/e/planets/"},
+      {time:"5:30pm",type:"food",icon:"🍤",label:"Dinner — Toyosu or back toward Shinjuku",detail:"Keep the evening gentle. (Skytree cut — Chris and Emily don't like heights.)",who:"Family"},
     ],
-    notes:"Ghibli Museum is closed on Tuesdays — this day is perfectly arranged around that."
+    notes:"Yukata-first was a deliberate change so Senso-ji becomes the photo backdrop. teamLab is the day's big visual experience."
   },
   {
     day:4, date:"Wed Jul 15", location:"Tokyo — Ghibli Museum Day 🌟", emoji:"🐱",
-    color:"#a8c8a0", tags:["Ghibli","Must-Book","Whole Family"],
+    color:"#a8c8a0", tags:["Ghibli","Whole Family"],
     summary:"The most important day of the trip. Possibly ever, for Zoe and Emily.",
-    morningWalk:{who:"Chris solo",route:"Inokashira Park at dawn — the park surrounding the Ghibli Museum. Walk the lake path.",duration:"~1 hour",coffee:"Kichijoji has wonderful independent coffee shops"},
+    morningWalk:{who:"Chris solo",route:"Inokashira Park at dawn — the park beside the museum. Walk the lake path.",duration:"~1 hour",coffee:"Kichijōji has wonderful independent coffee"},
     pairings:[],
     schedule:[
-      {time:"6:00am",type:"walk",icon:"☕",label:"Chris's walk — Inokashira Park at dawn",detail:"Solo. The park containing the museum at its most magical.",who:"Chris"},
-      {time:"8:30am",type:"food",icon:"☕",label:"Family breakfast — relaxed morning",detail:"Timed entry means no rush.",who:"Family"},
-      {time:"9:30am",type:"transport",icon:"🚇",label:"Shinjuku → Kichijoji (Keio Inokashira Line, ~26min, ~¥220)",detail:"Direct to Kichijoji. Suica cards.",who:"Family"},
-      {time:"10:00am",type:"activity",icon:"🐱",label:"STUDIO GHIBLI MUSEUM — timed entry",detail:"⚠️ BOOK JUNE 9 at 9pm Indianapolis time. Photography banned inside. Exclusive short film. Allow 2.5-3 hours.",who:"Family"},
-      {time:"12:30pm",type:"activity",icon:"🛍️",label:"GHIBLI MUSEUM GIFT SHOP — exclusive merchandise only here",detail:"The ONLY place on earth for these items. Budget deliberately. Allow 45 minutes.",who:"Family"},
-      {time:"1:30pm",type:"food",icon:"🌿",label:"Inokashira Park picnic or Kichijoji lunch",detail:"Konbini picnic in the park, or a sit-down in one of Kichijoji's excellent restaurants.",who:"Family"},
-      {time:"3:00pm",type:"activity",icon:"🛒",label:"Kichijoji neighborhood — boutique exploration",detail:"Emily: mori girl boutiques. Zoe: Donguri Republic Ghibli store. Anna: craft shops. Chris: Muji.",who:"Family"},
-      {time:"5:00pm",type:"activity",icon:"☕",label:"Afternoon coffee — Kichijoji independent cafe",detail:"Chris's great afternoon cup. Everyone rests.",who:"Family"},
-      {time:"6:00pm",type:"transport",icon:"🚇",label:"Kichijoji → Shinjuku (Keio Inokashira Line, ~26min)",detail:"Back to MIMARU.",who:"Family"},
-      {time:"7:30pm",type:"food",icon:"🍜",label:"Celebratory dinner — Zoe and Emily choose",detail:"Ghibli Museum day deserves a celebration. Ramen is Zoe's call.",who:"Family"},
+      {time:"9:00am",type:"food",icon:"☕",label:"Relaxed family breakfast",detail:"Timed entry means no rush — adjust the morning to the 12:00 slot.",who:"Family"},
+      {time:"10:30am",type:"transport",icon:"🚇",label:"Shinjuku → Kichijōji (JR Chūō rapid, ~15min)",detail:"Then ~15min walk or the community bus to the museum.",who:"Family"},
+      {time:"12:00pm",type:"activity",icon:"🐱",label:"STUDIO GHIBLI MUSEUM — BOOKED, 12:00 entry",detail:"Conf #8345626454. ⚠️ Bring the printed barcode page. Photography banned inside; exclusive short film; a real 35mm-film-strip ticket. 2.5–3h.",who:"Family",map:"Ghibli Museum Mitaka",url:"https://www.ghibli-museum.jp/en/"},
+      {time:"2:30pm",type:"activity",icon:"🛍️",label:"Ghibli Museum gift shop",detail:"Exclusive items sold ONLY here. Budget deliberately. ~45 min.",who:"Family"},
+      {time:"3:30pm",type:"food",icon:"🌿",label:"Inokashira Park picnic / Kichijōji lunch",detail:"Konbini picnic in the park, or a Kichijōji restaurant.",who:"Family",map:"Inokashira Park"},
+      {time:"4:30pm",type:"activity",icon:"🛒",label:"Kichijōji boutiques",detail:"Zoe: Donguri Republic, Dungeon Meshi merch. Emily: mori-girl shops. Anna: craft shops. Chris: Muji, slow cafe.",who:"Family",map:"Donguri Republic Kichijoji"},
+      {time:"6:30pm",type:"food",icon:"🍜",label:"Celebratory dinner — Zoe chooses",detail:"Anything she wants.",who:"Family"},
     ],
-    notes:"⚠️ GHIBLI TICKETS: On sale June 9 at 9:00pm Indianapolis time (EDT). Create your Lawson Ticket account NOW. Log in 15-30min early."
+    notes:"✅ Tickets secured via Lawson Ticket. Don't forget the printed barcode page in the carry-on."
   },
   {
-    day:5, date:"Thu Jul 16", location:"Tokyo — Manga Workshop + Furoshiki + Anna's Solo Morning", emoji:"✏️",
-    color:"#b8b0d8", tags:["Split Day","Art","Craft"],
+    day:5, date:"Thu Jul 16", location:"Tokyo — Divide by Interest", emoji:"✏️",
+    color:"#8a7060", tags:["Split Day","Craft"],
     summary:"The family divides by interest. Everyone does exactly their thing.",
-    morningWalk:{who:"Chris solo (longer)",route:"Yanaka — Tokyo's most preserved old-town neighborhood. Cemetery lanes, kissaten cafes.",duration:"~2 hours",coffee:"Yanaka's kissaten cafes are Tokyo institutions"},
+    morningWalk:null,
     pairings:[
-      {pair:"Chris, Zoe & Emily",activity:"Manga & illustration workshop — 3 hours with a working Japanese illustrator. Character design, manga panel composition, expression techniques."},
-      {pair:"Anna Solo",activity:"Furoshiki fabric-wrapping workshop (1.5-2h). Then: Isetan Shinjuku depachika food hall, completely alone, no agenda."},
-      {pair:"Family (1:00pm)",activity:"Reunion lunch — Anna brings depachika discoveries. Everyone shares what they made, found, and drew."},
+      {pair:"Anna solo",activity:"Furoshiki wrapping workshop (Link Collective, Shirokane-Takanawa) — the cloth becomes her trip carry-all. Then Isetan Shinjuku depachika, alone, no agenda."},
+      {pair:"Chris, Zoe & Emily",activity:"Manga & illustration workshop (3h), English-taught. 'FUN FUN FUN' — Zoe. Bring sketchbooks."},
+      {pair:"Family (1:00pm)",activity:"Reunion lunch — Anna brings depachika finds; everyone shares what they made and drew."},
     ],
     schedule:[
-      {time:"5:30am",type:"walk",icon:"☕",label:"Chris's walk — Yanaka old town",detail:"Solo. Preserved streets, kissaten for a very slow morning cup.",who:"Chris"},
-      {time:"8:00am",type:"food",icon:"☕",label:"Quick family breakfast — split begins",detail:"Anna heads out first. Chris takes the girls to the workshop.",who:"Family"},
-      {time:"9:00am",type:"activity",icon:"🎨",label:"ANNA: Furoshiki workshop — solo",detail:"1.5-2 hour workshop. The cloth she makes immediately becomes her trip carry-all.",who:"Anna"},
-      {time:"9:30am",type:"activity",icon:"✏️",label:"CHRIS, ZOE & EMILY: Manga & illustration workshop (3h)",detail:"Working illustrator teaches character design and manga techniques. Book via Airbnb Experiences or Viator.",who:"Chris"},
-      {time:"11:00am",type:"activity",icon:"🏬",label:"ANNA: Isetan Shinjuku depachika — solo wander",detail:"B1 and B2 food halls. No plan. Sample things. Buy things. Her own pace.",who:"Anna"},
-      {time:"1:00pm",type:"food",icon:"🍱",label:"Family reunion lunch — Anna brings the goods",detail:"Anna's depachika finds become the shared table.",who:"Family"},
-      {time:"3:00pm",type:"rest",icon:"😴",label:"Afternoon rest — MIMARU",detail:"Hot July afternoon. Girls watch Ghibli films. Chris journals. Anna reads.",who:"Family"},
-      {time:"5:00pm",type:"activity",icon:"🌇",label:"Optional: Tokyo Metropolitan Government Building (FREE)",detail:"10min walk from MIMARU. Free observation deck at 202m. Open until 10:30pm.",who:"Family"},
-      {time:"7:00pm",type:"food",icon:"🏮",label:"Dinner — Shinjuku Golden Gai or nearby izakaya",detail:"Small atmospheric bars and restaurants.",who:"Family"},
-      {time:"Night",type:"activity",icon:"🧳",label:"LOGISTICS: Forward large bags to Kyoto via Yamato Transport",detail:"⚠️ Ask MIMARU front desk tonight. ~¥1,500-2,000/bag. Pack overnight bags for Hakone.",who:"Family"},
+      {time:"9:30am",type:"activity",icon:"🎨",label:"ANNA: Furoshiki workshop (1.5–2h)",detail:"Link Collective studio, Shirokane-Takanawa. The cloth becomes her carry-all.",who:"Anna",map:"Link Collective Tokyo Takanawa",url:"https://linkcollective.com/collections/workshop"},
+      {time:"9:30am",type:"activity",icon:"✏️",label:"CHRIS, ZOE & EMILY: Manga & illustration workshop (3h)",detail:"English-taught (Airbnb Experiences / Viator). Character design and manga panels.",who:"Chris"},
+      {time:"11:30am",type:"activity",icon:"🏬",label:"ANNA: Isetan Shinjuku depachika — solo",detail:"B1/B2 food halls. No agenda. Sample, buy, her own pace.",who:"Anna",map:"Isetan Shinjuku",url:"https://www.mistore.jp/store/shinjuku.html"},
+      {time:"1:00pm",type:"food",icon:"🍱",label:"Family reunion lunch",detail:"Anna brings the depachika finds; everyone shares the morning.",who:"Family"},
+      {time:"2:30pm",type:"activity",icon:"✏️",label:"Stationery round 2 (optional)",detail:"Loft Shinjuku or Hands if Zoe wants more.",who:"Zoe",map:"Loft Shibuya"},
+      {time:"4:00pm",type:"rest",icon:"🧺",label:"Rest + Laundry #1 at MIMARU",detail:"Start a load on arrival — the 24h coin laundry runs while you rest. Covers you through Hakone.",who:"Family"},
+      {time:"6:30pm",type:"food",icon:"🏮",label:"Shinjuku Golden Gai dinner / izakaya",detail:"Small atmospheric bars. Pick: Nagi ramen in Golden Gai.",who:"Family",map:"Shinjuku Golden Gai"},
     ],
-    notes:"Book manga workshop well in advance. Klook, Viator, Airbnb Experiences have English-taught Tokyo options."
+    notes:"Book the manga workshop ahead — small sessions fill."
   },
   {
-    day:6, date:"Fri Jul 17", location:"Tokyo — Sanrio Puroland + Shimokitazawa", emoji:"🎀",
-    color:"#f0c0d0", tags:["Split Day","Emily Special","Street Art"],
-    summary:"Emily's dream day. Anna escorts the girls, then joins Chris for their best Tokyo afternoon.",
-    morningWalk:{who:"Chris (then Anna joins)",route:"Shimokitazawa early — see the neighborhood before the shops open. Breakfast together.",duration:"~1.5 hours",coffee:"Shimokitazawa independent cafes are excellent"},
-    pairings:[
-      {pair:"Anna escorts Zoe & Emily to Puroland, then returns",activity:"Anna accompanies the girls to Tama-Center Station, walks them into Puroland, then returns to Shimokitazawa. Check-in texts every 2 hours."},
-      {pair:"Anna & Chris (after escort)",activity:"Shimokitazawa street murals, vintage shops, independent galleries, long lunch together."},
-      {pair:"Anna picks up Zoe & Emily at 5pm",activity:"Anna returns to Tama-Center for pickup. Everyone reconvenes at Shinjuku."},
-    ],
+    day:6, date:"Fri Jul 17", location:"Tokyo — Kawaii & Anime Day", emoji:"🎀",
+    color:"#f0c0d0", tags:["Whole Family","Fashion","Animals"],
+    summary:"Replaces Sanrio Puroland — lower-key and browsy: kawaii shopping, themed food, vintage.",
+    morningWalk:null,
+    pairings:[],
     schedule:[
-      {time:"6:00am",type:"walk",icon:"☕",label:"Chris's walk — Shimokitazawa at dawn, then Anna joins",detail:"Chris explores the neighborhood. Anna joins at 7am. Quiet breakfast together.",who:"Chris"},
-      {time:"8:00am",type:"food",icon:"☕",label:"Quick family breakfast — Puroland prep",detail:"Load Suica cards. ¥8,000 cash each for the girls. Both phones charged.",who:"Family"},
-      {time:"9:00am",type:"transport",icon:"🚇",label:"ANNA escorts Zoe & Emily → Tama-Center (Keio Line, ~35min)",detail:"Anna accompanies all the way to Puroland entrance. Confirms meeting plan.",who:"Anna"},
-      {time:"9:30am",type:"activity",icon:"🎀",label:"ZOE & EMILY: Sanrio Puroland — all day",detail:"Fully indoors, air-conditioned, one entrance/exit. Hello Kitty meets, pink food, live shows.",who:"Zoe"},
-      {time:"10:30am",type:"activity",icon:"🎨",label:"ANNA & CHRIS: Shimokitazawa street art & community",detail:"Anna leads. Back-alley murals, independent galleries.",who:"Anna"},
-      {time:"12:00pm",type:"activity",icon:"👔",label:"Vintage shops + Muji for Chris",detail:"Anna scouts Zoe's vintage finds. Chris finds classic menswear pieces.",who:"Anna"},
-      {time:"1:30pm",type:"food",icon:"🥗",label:"ANNA & CHRIS: Long lunch in Shimokitazawa",detail:"Excellent independent restaurants. Rare adult conversation.",who:"Anna"},
-      {time:"5:00pm",type:"transport",icon:"🚇",label:"ANNA: Return to Tama-Center to collect Zoe & Emily",detail:"Keio Line, ~35min. Everyone reconvenes at Shinjuku.",who:"Anna"},
-      {time:"7:00pm",type:"food",icon:"🍛",label:"Family dinner — Shinjuku",detail:"Zoe and Emily report everything. Anna and Chris report Shimokitazawa.",who:"Family"},
+      {time:"10:00am",type:"transport",icon:"🚇",label:"Shinjuku → Ikebukuro (JR Yamanote, ~9min)",detail:"To the Sunshine City complex.",who:"Family"},
+      {time:"10:15am",type:"activity",icon:"🎀",label:"Sunshine City — Pokémon Center, Sanrio Vivitix, Animate",detail:"Kawaii + anime hub. Otome Road nearby.",who:"Family",map:"Sunshine City Ikebukuro",url:"https://sunshinecity.jp/en/"},
+      {time:"12:30pm",type:"food",icon:"🍴",label:"Lunch — Namja Town (Sunshine City)",detail:"Kawaii themed-food park: gyoza alley, dessert yokocho, cute attractions (a Reborn! collab opens Jul 17). No reservation. 🔎 Watching the Animate Cafe Jul-17 lineup in case a series Zoe loves opens.",who:"Zoe",map:"Namja Town Sunshine City Ikebukuro",url:"https://event.bandainamco-am.co.jp/namja/"},
+      {time:"2:30pm",type:"transport",icon:"🚇",label:"→ Shimokitazawa (via Shibuya, ~6min)",detail:"Tokyo's vintage capital.",who:"Family"},
+      {time:"3:00pm",type:"activity",icon:"🛍️",label:"Shimokitazawa — thrifting & indie shops",detail:"Zoe's vintage finds: Flamingo, New York Joe, Stick Out. Cute cafes, candy and clothes for Emily.",who:"Zoe",map:"Shimokitazawa Station"},
+      {time:"6:00pm",type:"food",icon:"🍛",label:"Back to Shinjuku — family dinner",detail:"Everyone chooses.",who:"Family"},
+      {time:"Night",type:"activity",icon:"🧳",label:"LOGISTICS: forward large bags to Kyoto (Yamato)",detail:"⚠️ Ask the MIMARU desk tonight. ~¥1,750/bag. Pack Hakone overnight bags only.",who:"Family"},
     ],
-    notes:"Puroland is completely contained — one building, one entrance, English throughout, exceptionally helpful staff."
+    notes:"Witch Hat Atelier has no collab cafe and Delicious in Dungeon is only at a Chiba theme park — so Namja Town is the kawaii anchor, with Animate Cafe as a watch-and-maybe-swap."
   },
   {
     day:7, date:"Sat Jul 18", location:"Tokyo → Hakone — Ryokan Night ♨️", emoji:"♨️",
-    color:"#a0c0d8", tags:["Whole Family","Onsen","Special Night"],
-    summary:"Leave the city behind. Anna's most anticipated night of the trip.",
-    morningWalk:{who:"Chris solo",route:"Final Tokyo morning — Koenji canal or Shinjuku neighborhood streets. Last great Tokyo coffee.",duration:"~45 minutes",coffee:"One final great Tokyo cup before the mountains"},
-    pairings:[
-      {pair:"Whole Family",activity:"Hakone Open Air Museum — Zoe and Emily explore the Picasso pavilion and foot-bath areas while Anna and Chris take in the larger sculptures."},
-    ],
-    schedule:[
-      {time:"6:30am",type:"walk",icon:"☕",label:"Chris's final Tokyo walk",detail:"Short. Easy. Last Tokyo coffee.",who:"Chris"},
-      {time:"8:00am",type:"food",icon:"☕",label:"Family breakfast + check-out",detail:"Large bags already forwarded to Kyoto. Hakone overnight bags only.",who:"Family"},
-      {time:"9:00am",type:"transport",icon:"🚶",label:"Walk to Shinjuku Station — Odakyu platforms",detail:"Buy Hakone Free Pass (2-day, ~¥6,100/adult) at Odakyu counter.",who:"Family"},
-      {time:"9:30am",type:"transport",icon:"🚂",label:"ROMANCECAR — Shinjuku → Hakone-Yumoto (~85min)",detail:"Reserved seats — book in advance via EMot Online Tickets. Sit right side for mountain views.",who:"Family"},
-      {time:"11:00am",type:"activity",icon:"🖼️",label:"Hakone Open Air Museum — art in nature",detail:"World-class sculpture in a beautiful outdoor landscape.",who:"Family"},
-      {time:"1:00pm",type:"food",icon:"🍜",label:"Lunch — soba near museum",detail:"Hakone soba is a local specialty.",who:"Family"},
-      {time:"3:00pm",type:"activity",icon:"⛵",label:"Lake Ashi pirate ship cruise (Hakone Free Pass)",detail:"Emily's most anticipated Hakone moment. 30-minute galleon cruise.",who:"Family"},
-      {time:"4:00pm",type:"activity",icon:"🌊",label:"Hakone Shrine lakeside gate — Anna's waterfront walk",detail:"The iconic gate rising from Lake Ashi. Anna walks the lake path slowly.",who:"Family"},
-      {time:"5:00pm",type:"activity",icon:"🏨",label:"CHECK IN — Yoshiike Ryokan (private onsen)",detail:"Yukata for everyone. Tatami room. Private onsen is yours anytime.",who:"Family"},
-      {time:"5:30pm",type:"activity",icon:"♨️",label:"Private onsen — first family soak",detail:"Anna's moment. The mineral water is extraordinary.",who:"Family"},
-      {time:"7:00pm",type:"food",icon:"🍱",label:"KAISEKI DINNER — served in your room",detail:"Multi-course traditional dinner. Beautiful presentation. Sake for Anna and Chris.",who:"Family"},
-      {time:"9:00pm",type:"activity",icon:"♨️",label:"Evening onsen + inn garden walk in yukata",detail:"Second soak. Futons laid out while you were at dinner.",who:"Family"},
-    ],
-    notes:"Book ryokan NOW. Confirm private onsen. Ryokan provides yukata, towels, toiletries — pack minimally."
-  },
-  {
-    day:8, date:"Sun Jul 19", location:"Hakone + Mt. Fuji — Chris's Day 🗻", emoji:"🗻",
-    color:"#d0d8c0", tags:["Split Day","Adventure","Chris Solo"],
-    summary:"Chris climbs the mountain. The family loops Hakone. Everyone has their best day.",
-    morningWalk:{who:"Chris solo — this IS his walk (all day)",route:"Pre-dawn transport to Mt. Fuji 5th Station. Full summit climb — 5-7h up, 3-4h down.",duration:"Full day",coffee:"Thermos from the ryokan."},
-    pairings:[
-      {pair:"Chris Solo",activity:"Mt. Fuji summit climb — pre-dawn start. His most solitary, extraordinary moment."},
-      {pair:"Anna, Zoe & Emily",activity:"Hakone Loop — Owakudani volcanic valley, Lake Ashi waterfront walk, pirate ship, Hakone Shrine gate."},
-    ],
-    schedule:[
-      {time:"3:30am",type:"walk",icon:"🗻",label:"CHRIS: Pre-dawn transport to Mt. Fuji 5th Station",detail:"Book a guided group climb or pre-arranged car. ~90min to 5th Station.",who:"Chris"},
-      {time:"5:00am",type:"activity",icon:"🗻",label:"CHRIS: Begin Fuji climb (2,305m → 3,776m)",detail:"Yoshida Trail. 5-7h up, 3-4h down. Summit temp ~10°C. Layers, poles, thermos, headlamp essential.",who:"Chris"},
-      {time:"7:00am",type:"food",icon:"🍱",label:"FAMILY: Ryokan traditional breakfast — served in room",detail:"Miso soup, grilled fish, rice, pickles, tamagoyaki. Emily photographs it all.",who:"Anna"},
-      {time:"9:00am",type:"transport",icon:"🚠",label:"FAMILY: Hakone Ropeway → Owakudani (book timed entry)",detail:"~15min. Panoramic views. Covered by Hakone Free Pass.",who:"Anna"},
-      {time:"9:30am",type:"activity",icon:"🌋",label:"FAMILY: Owakudani volcanic valley",detail:"Sulphurous steam vents. Black volcanic eggs (kuro tamago) ¥500 for 5.",who:"Anna"},
-      {time:"11:00am",type:"activity",icon:"🌊",label:"FAMILY: Lake Ashi waterfront walk — Anna's water moment",detail:"Bus to Moto-Hakone (Free Pass). Anna walks the lakeside path.",who:"Anna"},
-      {time:"12:00pm",type:"food",icon:"🍜",label:"FAMILY: Lakeside soba lunch",detail:"Views over the lake.",who:"Anna"},
-      {time:"12:00pm",type:"activity",icon:"🏔️",label:"CHRIS: Summit Mt. Fuji (3,776m)",detail:"Walk the crater rim. Views to Tokyo on clear days.",who:"Chris"},
-      {time:"1:30pm",type:"activity",icon:"⛵",label:"FAMILY: Lake Ashi pirate ship cruise (Free Pass)",detail:"Emily's highlight.",who:"Anna"},
-      {time:"4:30pm",type:"transport",icon:"🚂",label:"FAMILY: Romancecar → Shinkansen → Kyoto",detail:"SIT RIGHT SIDE (D/E) on the Shinkansen — Mt. Fuji view!",who:"Anna"},
-      {time:"8:30pm",type:"activity",icon:"🏨",label:"FAMILY: Check in — MIMARU Kyoto Shinmachi Sanjo",detail:"Luggage already waiting. Kyoto is immediately different — quieter, older.",who:"Anna"},
-      {time:"~Evening",type:"transport",icon:"🚅",label:"CHRIS: Descend + Shinkansen → Kyoto (flexible ticket)",detail:"Joins family this evening or first thing tomorrow.",who:"Chris"},
-    ],
-    notes:"The logistically complex day. Brief everyone the night before. Anna has Free Pass and Suica cards. Chris has climbing gear and return transport pre-booked."
-  },
-  {
-    day:9, date:"Mon Jul 20", location:"Kyoto — Recovery Day", emoji:"🌿",
-    color:"#c8b8a0", tags:["Recovery","Gentle"],
-    summary:"Gentle. Chris's legs need this. Everyone gets Kyoto-adjusted.",
-    morningWalk:{who:"Chris (very short)",route:"Just enough to find coffee. His legs are destroyed after Fuji.",duration:"~30 minutes",coffee:"Nearest good coffee to MIMARU"},
-    pairings:[
-      {pair:"Anna & Chris",activity:"Kamo River walk together, then Japanese supermarket — their shared food love."},
-      {pair:"Zoe & Emily (parent within half a block)",activity:"Teramachi covered arcade — manga and bookshops for Zoe, washi and stationery for Emily."},
-    ],
-    schedule:[
-      {time:"7:00am",type:"walk",icon:"☕",label:"Chris's very gentle recovery walk",detail:"15-30 minutes maximum. He climbed a mountain yesterday.",who:"Chris"},
-      {time:"9:00am",type:"food",icon:"☕",label:"Slow family breakfast — MIMARU kitchen",detail:"Use the kitchen. No schedule. No rush.",who:"Family"},
-      {time:"10:30am",type:"activity",icon:"🌊",label:"ANNA & CHRIS: Kamo River walk",detail:"The river runs through central Kyoto — locals on the stepped banks.",who:"Anna"},
-      {time:"10:30am",type:"activity",icon:"📚",label:"ZOE & EMILY: Teramachi arcade (parent within half a block)",detail:"Manga and bookshops for Zoe, washi paper and stationery for Emily.",who:"Zoe"},
-      {time:"11:30am",type:"activity",icon:"🛒",label:"ANNA & CHRIS: Japanese supermarket visit",detail:"A full Japanese supermarket — bento, fresh sashimi, seasonal produce.",who:"Anna"},
-      {time:"1:00pm",type:"food",icon:"🍜",label:"Nishiki Market — preview pass",detail:"Family together. Anna samples everything. Full Nishiki time is Day 10.",who:"Family"},
-      {time:"2:30pm",type:"rest",icon:"😴",label:"Long afternoon rest",detail:"Chris sleeps. Zoe draws. Emily looks at her Ghibli haul. Anna reads.",who:"Family"},
-      {time:"5:30pm",type:"activity",icon:"🌅",label:"Kamo River evening walk — family",detail:"The riverbanks at dusk: locals, herons, fireflies in July.",who:"Family"},
-      {time:"7:00pm",type:"food",icon:"🍣",label:"Dinner — Pontocho Alley",detail:"Narrow lantern-lit alley alongside the Kamo River.",who:"Family"},
-    ],
-    notes:"The recovery day is not wasted. Kyoto reveals itself slowly."
-  },
-  {
-    day:10, date:"Tue Jul 21", location:"Kyoto — Nishiki Market + Gion Festival", emoji:"🎆",
-    color:"#e8d0a8", tags:["Whole Family","Food","Festival"],
-    summary:"Anna's food market morning. Historic Kyoto. Extraordinary festival atmosphere at night.",
-    morningWalk:{who:"Chris solo",route:"Kamo River north at dawn toward the mountains. Herons, turtles, monks crossing bridges.",duration:"~1 hour",coffee:"Riverside kissaten along the Kamo"},
-    pairings:[
-      {pair:"Anna leads the family",activity:"Nishiki Market — she sets the pace, everyone follows."},
-      {pair:"Anna & Chris (with girls in castle grounds)",activity:"Nijo Castle — famous 'nightingale floors.' Girls explore the grounds while parents take in the interior."},
-    ],
-    schedule:[
-      {time:"6:00am",type:"walk",icon:"☕",label:"Chris's walk — Kamo River north at dawn",detail:"Solo. Pre-dawn river walk toward the mountains.",who:"Chris"},
-      {time:"9:30am",type:"activity",icon:"🛒",label:"NISHIKI MARKET — Anna leads, 2 hours",detail:"100+ vendors. Tsukemono, tofu, fresh dashi, warabi mochi, fresh sushi. Best before 11am.",who:"Family"},
-      {time:"11:30am",type:"food",icon:"🍱",label:"Nishiki stall lunch — eat as you walk",detail:"The market constitutes a full meal if you sample strategically.",who:"Family"},
-      {time:"1:30pm",type:"rest",icon:"🌡️",label:"Midday rest — department store air conditioning",detail:"July heat. Takashimaya nearby has excellent food floors too.",who:"Family"},
-      {time:"3:00pm",type:"activity",icon:"🏯",label:"Nijo Castle — historic fortification & garden",detail:"Famous for its 'nightingale floors' that squeak underfoot.",who:"Family"},
-      {time:"5:00pm",type:"activity",icon:"🏘️",label:"Gion district — evening walk through historic machiya townhouses",detail:"Gion Matsuri runs ALL of July. Lantern-lit Hanamikoji Street.",who:"Family"},
-      {time:"6:30pm",type:"activity",icon:"🎆",label:"Gion Matsuri festival stalls",detail:"Takoyaki, yakisoba, kakigori shaved ice. Emily in yukata eating kakigori.",who:"Family"},
-      {time:"8:00pm",type:"food",icon:"🍜",label:"Dinner — Gion restaurant (book 4-6 weeks ahead)",detail:"Kaiseki-influenced set menu.",who:"Family"},
-    ],
-    notes:"Nishiki Market is best before 11am. The Gion Matsuri evening is one of the great Japan travel experiences."
-  },
-  {
-    day:11, date:"Wed Jul 22", location:"Kyoto — Arashiyama + Wild Monkeys", emoji:"🎋",
-    color:"#a8c8a8", tags:["Split Day","Nature","Animals"],
-    summary:"Chris sees the bamboo grove twice. Wild macaques. The most beautiful river in Japan.",
-    morningWalk:{who:"Chris solo (very early)",route:"Arashiyama Bamboo Grove at 6am — nearly alone in one of Japan's most famous places.",duration:"~1.5 hours",coffee:"Riverside cafes in Arashiyama open early"},
-    pairings:[
-      {pair:"Anna & Emily",activity:"Iwatayama Monkey Park — 15min uphill hike to wild macaques roaming free. Emily's animal dream. ¥550/adult, ¥250/child."},
-      {pair:"Chris & Zoe",activity:"Bamboo grove photography, Tenryu-ji garden."},
-      {pair:"Family",activity:"Sagano Scenic Railway and Togetsukyo Bridge river walk together."},
-    ],
-    schedule:[
-      {time:"5:45am",type:"walk",icon:"☕",label:"Chris's walk — Bamboo Grove alone at dawn",detail:"Solo. At 6am the bamboo grove may be nearly empty. Transcendent.",who:"Chris"},
-      {time:"8:30am",type:"food",icon:"☕",label:"Family breakfast + travel prep",detail:"Quick breakfast, pack day bags.",who:"Family"},
-      {time:"9:00am",type:"transport",icon:"🚇",label:"Family → Arashiyama (JR Sagano Line, ~15min, ¥240)",detail:"Kyoto Station → Saga-Arashiyama.",who:"Family"},
-      {time:"9:15am",type:"activity",icon:"🎋",label:"Bamboo Grove — family visit",detail:"Chris has seen this at dawn alone. Now with his family. Zoe photographs relentlessly.",who:"Family"},
-      {time:"10:00am",type:"activity",icon:"🐒",label:"ANNA & EMILY: Iwatayama Monkey Park",detail:"Short uphill hike. Wild Japanese macaques roaming free on the hillside.",who:"Anna"},
-      {time:"10:00am",type:"activity",icon:"🌿",label:"CHRIS & ZOE: Tenryu-ji garden (~¥500/person)",detail:"UNESCO World Heritage garden. Pond garden backed by the Arashiyama mountains.",who:"Chris"},
-      {time:"11:30am",type:"food",icon:"🍜",label:"Lunch — riverside restaurant",detail:"Anna gets her water views over lunch.",who:"Family"},
-      {time:"1:00pm",type:"activity",icon:"🚂",label:"Sagano Scenic Railway — book in advance (¥880/person)",detail:"25min through mountain gorge. The most beautiful train journey in Japan.",who:"Family"},
-      {time:"2:30pm",type:"activity",icon:"🌉",label:"Togetsukyo Bridge — Anna's river moment",detail:"The iconic bridge over the Oi River. Anna walks it slowly.",who:"Family"},
-      {time:"3:30pm",type:"transport",icon:"🚇",label:"Arashiyama → Kyoto (JR Sagano Line, ~15min)",detail:"Back to MIMARU.",who:"Family"},
-      {time:"7:30pm",type:"food",icon:"🍣",label:"Dinner — Shijo-Kawaramachi area",detail:"Everyone chooses tonight.",who:"Family"},
-    ],
-    notes:"Monkey park hike is 15min uphill — both Anna and Emily will find it completely worth it."
-  },
-  {
-    day:12, date:"Thu Jul 23", location:"Kyoto — Fushimi Inari + Calligraphy + Cooking Class", emoji:"⛩️",
-    color:"#d8a8a0", tags:["Split Day","Art","Cooking","Chris Solo"],
-    summary:"Pre-dawn torii gates. Calligraphy for Chris and Zoe. The whole family cooks together.",
-    morningWalk:{who:"Chris solo (unmissable)",route:"Fushimi Inari torii gates before sunrise — at 5am you may have the 5,000+ gates nearly alone.",duration:"~2 hours",coffee:"Coffee at the base before going up"},
-    pairings:[
-      {pair:"Chris & Zoe",activity:"Calligraphy workshop — language and art together. Their shared intellectual world."},
-      {pair:"Anna & Emily",activity:"Kinkaku-ji Golden Pavilion and surrounding garden. Emily's most aesthetic photo of the trip."},
-      {pair:"Whole Family (afternoon)",activity:"Cooking class together in a machiya townhouse — Kyoto cuisine, then eat what you made."},
-    ],
-    schedule:[
-      {time:"4:45am",type:"walk",icon:"☕",label:"Chris's pre-dawn walk — Fushimi Inari ALONE",detail:"Solo. JR Nara Line: Kyoto → Inari Station, 5min, ¥150. At 5am the gates may be nearly deserted.",who:"Chris"},
-      {time:"7:30am",type:"food",icon:"☕",label:"Family breakfast + split prep",detail:"Pack art materials for calligraphy.",who:"Family"},
-      {time:"9:00am",type:"activity",icon:"🏯",label:"Fushimi Inari — family walk together (30-45min up)",detail:"Chris sees it again with his family.",who:"Family"},
-      {time:"10:30am",type:"transport",icon:"🚇",label:"ANNA & EMILY → Kinkaku-ji (city bus, ~40min)",detail:"North Kyoto. Anna and Emily together.",who:"Anna"},
-      {time:"10:30am",type:"transport",icon:"🚇",label:"CHRIS & ZOE → Calligraphy workshop (Gion/Nishiki area)",detail:"~1.5-2 hour session.",who:"Chris"},
-      {time:"11:00am",type:"activity",icon:"🖌️",label:"CALLIGRAPHY WORKSHOP — Chris & Zoe",detail:"Brush writing. Zoe writes words from her Japanese study. Chris writes his name in kanji.",who:"Chris"},
-      {time:"11:00am",type:"activity",icon:"🏯",label:"KINKAKU-JI — Anna & Emily",detail:"The golden pavilion reflected in the pond. Emily's most aesthetic photo of the trip.",who:"Anna"},
-      {time:"1:00pm",type:"food",icon:"🍱",label:"Family reconvenes — light lunch",detail:"Don't eat heavily — the cooking class means you eat what you make.",who:"Family"},
-      {time:"3:00pm",type:"activity",icon:"🍳",label:"KYOTO COOKING CLASS — 3 hours in a machiya townhouse",detail:"100+ year-old townhouse kitchen. Kyoto cuisine: dashi broth, miso, wagashi sweets.",who:"Family"},
-      {time:"6:00pm",type:"food",icon:"🍱",label:"DINNER IS THE COOKING CLASS MEAL",detail:"You eat what you cooked together. The machiya setting makes it extraordinary.",who:"Family"},
-      {time:"7:30pm",type:"transport",icon:"🚶",label:"Evening walk home through Gion",detail:"Hanamikoji Street at night during Gion Matsuri. Walk slowly.",who:"Family"},
-    ],
-    notes:"Cooking class at 3pm means you avoid peak heat. The class meal replaces dinner cost."
-  },
-  {
-    day:13, date:"Fri Jul 24", location:"Kyoto — Shibori + Nara + Date Night 💙", emoji:"💙",
-    color:"#a0b8d0", tags:["Date Night","Craft","Animals","Special"],
-    summary:"Everyone has their perfect day. And their perfect evening.",
-    morningWalk:{who:"Chris solo",route:"Philosopher's Path at dawn — 2km stone canal walk, Japan's most beautiful urban path.",duration:"~1.5 hours",coffee:"Cafes open along the path around 7am"},
-    pairings:[
-      {pair:"Anna & Emily",activity:"Indigo shibori dyeing workshop — mother and daughter making something beautiful together. WEAR OLD CLOTHES. Indigo stains permanently."},
-      {pair:"Chris & Zoe",activity:"Nara day trip — wild deer, giant Buddha, Japanese practice with locals."},
-      {pair:"Anna & Chris (evening)",activity:"Date night — Gion dinner and sake bar. Home by 10pm."},
-      {pair:"Zoe & Emily (hotel evening)",activity:"Konbini run within hotel block only, then room, then Ghibli film marathon. Check-in texts every 90 minutes."},
-    ],
-    schedule:[
-      {time:"5:30am",type:"walk",icon:"☕",label:"Chris's walk — Philosopher's Path at dawn",detail:"Solo. The 2km stone canal path. Nearly yours at 5:30am.",who:"Chris"},
-      {time:"8:00am",type:"food",icon:"☕",label:"Family breakfast — then split",detail:"Anna and Emily head to shibori. Chris and Zoe to Kyoto Station for Nara.",who:"Family"},
-      {time:"9:00am",type:"activity",icon:"🎨",label:"ANNA & EMILY: Shibori indigo dyeing workshop (~2h)",detail:"CRITICAL: wear old clothes — indigo stains permanently. Both make their own unique wearable piece.",who:"Anna"},
-      {time:"9:00am",type:"transport",icon:"🚅",label:"CHRIS & ZOE → Nara (JR Nara Line, ~45min, ¥720)",detail:"From Kyoto Station.",who:"Chris"},
-      {time:"10:00am",type:"activity",icon:"🦌",label:"CHRIS & ZOE: Nara deer park",detail:"~1,200 free-roaming deer. Buy shika senbei crackers (¥200). The deer bow then mug you aggressively for more.",who:"Chris"},
-      {time:"11:30am",type:"activity",icon:"🏯",label:"CHRIS & ZOE: Todai-ji — great Buddha hall",detail:"World's largest wooden building. Try to fit through the famous wooden pillar hole.",who:"Chris"},
-      {time:"1:00pm",type:"food",icon:"🍜",label:"CHRIS & ZOE: Lunch in Nara",detail:"Kakinoha-zushi (persimmon leaf sushi) — a Nara specialty.",who:"Chris"},
-      {time:"11:00am",type:"activity",icon:"🛍️",label:"ANNA & EMILY: Teramachi craft shops after workshop",detail:"Both wearing their new shibori pieces already.",who:"Anna"},
-      {time:"2:30pm",type:"transport",icon:"🚅",label:"CHRIS & ZOE → back to Kyoto (~45min)",detail:"Rest before the evening.",who:"Chris"},
-      {time:"4:30pm",type:"rest",icon:"😴",label:"Family rest + date night prep",detail:"Zoe and Emily briefed: konbini run within hotel block only, then room.",who:"Family"},
-      {time:"6:00pm",type:"activity",icon:"💙",label:"ANNA & CHRIS: Date night — Gion restaurant",detail:"Book 4-6 weeks in advance. Chef's menu. Sake. ~15min walk from MIMARU.",who:"Anna"},
-      {time:"6:00pm",type:"activity",icon:"🎬",label:"ZOE & EMILY: Ghibli film night in the room",detail:"Spirited Away queued. Check-in texts every 90 minutes.",who:"Zoe"},
-      {time:"8:30pm",type:"activity",icon:"🥃",label:"ANNA & CHRIS: Sake bar — Gion lantern-lit alleys",detail:"Gion Matsuri at night. The most beautiful neighbourhood in Japan.",who:"Anna"},
-      {time:"10:00pm",type:"transport",icon:"🚶",label:"ANNA & CHRIS: Walk home through Gion",detail:"15-20min walk back.",who:"Anna"},
-    ],
-    notes:"Book Gion restaurant NOW. Anna and Chris stay in Gion — 15min walk from hotel — reachable in minutes if needed."
-  },
-  {
-    day:14, date:"Sat Jul 25", location:"Kyoto → Osaka — Food Day + Tenjin Matsuri Fireworks 🎆", emoji:"🦑",
-    color:"#e8b870", tags:["Whole Family","Food","Festival","Grand Finale"],
-    summary:"Final Kyoto morning. Osaka arrival. Tenjin Matsuri — AND the fireworks tonight.",
-    morningWalk:{who:"Chris, Anna & Emily",route:"Nishiki Market at opening (8am) — quiet and beautiful. Anna's final Kyoto market pass.",duration:"~1 hour",coffee:"Kyoto kissaten — the right farewell cup"},
-    pairings:[
-      {pair:"Anna & Chris",activity:"Kuromon Ichiba Market deep dive + Japanese supermarket — their shared food love at peak."},
-      {pair:"Zoe & Emily (one parent within half a block)",activity:"Dotonbori neon photography and street food."},
-    ],
-    schedule:[
-      {time:"6:00am",type:"walk",icon:"☕",label:"Chris, Anna & Emily — Nishiki Market at opening",detail:"All three slip out early. Nishiki at 8am is quiet and wonderful.",who:"Family"},
-      {time:"8:30am",type:"food",icon:"☕",label:"Family breakfast — final Kyoto morning",detail:"MIMARU kitchen. Last morning together in Kyoto.",who:"Family"},
-      {time:"9:30am",type:"activity",icon:"🛒",label:"Nishiki Market — Anna's final Kyoto food shopping",detail:"Miso, yatsuhashi, tsukemono sets, matcha, mirin for cooking Japanese food back home.",who:"Family"},
-      {time:"10:30am",type:"activity",icon:"🧳",label:"LOGISTICS: Forward bags to Osaka via Yamato Transport",detail:"⚠️ Ask MIMARU front desk. Pack day bags only.",who:"Family"},
-      {time:"11:30am",type:"food",icon:"🍱",label:"Final Kyoto lunch — everyone chooses their favourite",detail:"Last Kyoto meal.",who:"Family"},
-      {time:"1:00pm",type:"transport",icon:"🚅",label:"Hankyu Limited Express → Osaka Umeda (~44min, ¥400/person)",detail:"Kawaramachi Station → Umeda.",who:"Family"},
-      {time:"2:00pm",type:"activity",icon:"🏨",label:"Check in — MIMARU Osaka Namba Station",detail:"Two-bedroom apartment. 130+ board games. Free coffee 7-11am.",who:"Family"},
-      {time:"3:00pm",type:"activity",icon:"🛒",label:"ANNA & CHRIS: Kuromon Ichiba Market (1.5h)",detail:"Osaka's kitchen — fresh seafood, wagyu, tropical fruit.",who:"Anna"},
-      {time:"3:00pm",type:"activity",icon:"🌃",label:"ZOE & EMILY: Dotonbori (parent within half a block)",detail:"Giant mechanical crab, Glico running man, neon reflections.",who:"Zoe"},
-      {time:"4:30pm",type:"food",icon:"🍡",label:"Family: Dotonbori street food crawl",detail:"Takoyaki, okonomiyaki, kushikatsu. Chris finds tantanmen ramen.",who:"Family"},
-      {time:"5:30pm",type:"transport",icon:"🚇",label:"Family → Tenjin Matsuri reserved riverside seats",detail:"Arrive early. Find your reserved seats.",who:"Family"},
-      {time:"6:00pm",type:"activity",icon:"🎆",label:"TENJIN MATSURI — river procession begins",detail:"Decorated boats carrying portable shrines, musicians, performers.",who:"Family"},
-      {time:"7:30pm",type:"activity",icon:"🎆",label:"TENJIN MATSURI FIREWORKS — GRAND FINALE",detail:"~5,000 fireworks over the Yodo River. Reserved riverside seats. The perfect ending.",who:"Family"},
-      {time:"9:00pm",type:"transport",icon:"🚇",label:"Walk or subway back to MIMARU",detail:"Large crowds after fireworks. Be patient.",who:"Family"},
-    ],
-    notes:"Tenjin Matsuri fireworks are tonight — July 25 — your last night in Japan. Book riverside seats NOW."
-  },
-  {
-    day:15, date:"Sun Jul 26", location:"Osaka → Indianapolis ✈️", emoji:"🏠",
-    color:"#9b9bb0", tags:["Travel Day"],
-    summary:"Fly home from Kansai Airport. Cross the date line back. Arrive Indianapolis still July 26.",
-    morningWalk:{who:"Chris solo (final walk of the trip)",route:"Shinsekai neighborhood at dawn — Osaka's most atmospheric old district. Final great Japanese coffee.",duration:"~1 hour",coffee:"Shinsekai kissaten — a perfect final cup for the trip"},
+    color:"#5090a0", tags:["Whole Family","Onsen","Nature"],
+    summary:"Leave the city. The flagship Romancecar, the Hakone Open-Air Museum, and a hot-spring ryokan night.",
+    morningWalk:null,
     pairings:[],
     schedule:[
-      {time:"5:45am",type:"walk",icon:"☕",label:"Chris's final walk — Shinsekai at dawn",detail:"Solo. Last great Japanese coffee. Walk back along Dotonbori canal as the city wakes up.",who:"Chris"},
-      {time:"7:00am",type:"food",icon:"☕",label:"Free coffee — MIMARU lobby (7-11am)",detail:"Last konbini breakfast run together.",who:"Family"},
-      {time:"8:00am",type:"activity",icon:"🦔",label:"ANNA & EMILY: Animal cafe — cat or hedgehog (book in advance)",detail:"NO strong perfume. Old clothes. Emily with a hedgehog in her hands.",who:"Anna"},
-      {time:"8:00am",type:"activity",icon:"🛍️",label:"CHRIS & ZOE: Amerika-mura vintage — same block as cafe",detail:"Osaka's vintage and streetwear district. Zoe's final soft goth finds.",who:"Chris"},
-      {time:"10:00am",type:"activity",icon:"🛍️",label:"Final souvenir sweep — everyone together",detail:"Last Ghibli finds, kawaii, mori girl, menswear. Anna: Doguyasuji kitchen street for Japanese knives.",who:"Family"},
-      {time:"11:30am",type:"food",icon:"🍜",label:"Last ramen — Zoe chooses",detail:"Final meal in Japan. Zoe has full authority. Chris goes maximum spice.",who:"Family"},
-      {time:"1:00pm",type:"activity",icon:"🧳",label:"Final pack + check out",detail:"Everything in bags. Passports checked. Boarding passes downloaded.",who:"Family"},
-      {time:"2:00pm",type:"transport",icon:"🚇",label:"Namba → Kansai Airport (Nankai Airport Express, ~38min, ¥1,450/adult)",detail:"Direct from Namba Station to KIX. Allow 3 hours before departure.",who:"Family"},
-      {time:"~Evening",type:"transport",icon:"✈️",label:"Depart KIX → Indianapolis (via connection)",detail:"Cross the date line westward — you gain back the day. Arrive Indianapolis still July 26.",who:"Family"},
+      {time:"7:15am",type:"food",icon:"☕",label:"Breakfast + check-out",detail:"Hakone overnight bags only (big bags forwarded). Leave by ~8:00.",who:"Family"},
+      {time:"8:00am",type:"transport",icon:"🎫",label:"To Shinjuku — Hakone Free Pass (BOOKED)",detail:"Leave by ~8:00 — Shinjuku is huge and confusing; give yourselves time to find the Odakyu Romancecar platform, hit the restroom, and grab train snacks (no onboard food). Pass (EMot/QR) covers the whole loop + the Odakyu legs.",who:"Family",map:"Odakyu Romancecar Shinjuku Station"},
+      {time:"9:00am",type:"transport",icon:"🚃",label:"ROMANCECAR — Super Hakone 5, Shinjuku → Hakone-Yumoto (09:00→10:15)",detail:"BOOKED. Car 5, seats 9C/9D/10C/10D (right/Fuji side, all together). ¥4,030 surcharge. Limited-stop. Fuji on the right near Shin-Matsuda if clear.",who:"Family"},
+      {time:"10:30am",type:"transport",icon:"🚂",label:"Hakone Tozan Railway → Chōkoku-no-Mori (~40min)",detail:"The mountain railway zigzags up through cedar forest, 9 stops.",who:"Family"},
+      {time:"11:15am",type:"activity",icon:"🖼️",label:"Hakone Open-Air Museum",detail:"World-class sculpture in nature. ~¥2,000. Allow 1.5–2h.",who:"Family",map:"Hakone Open Air Museum",url:"https://www.hakone-oam.or.jp/en/"},
+      {time:"1:00pm",type:"food",icon:"🍜",label:"Soba lunch near Chōkoku-no-Mori",detail:"Hakone soba is a local specialty.",who:"Family",map:"soba Chokoku-no-Mori Hakone"},
+      {time:"2:45pm",type:"transport",icon:"🚂",label:"Tozan Railway → Gōra (5min)",detail:"Gora Kansuiro is a short walk from the station.",who:"Family"},
+      {time:"3:15pm",type:"activity",icon:"🏨",label:"Check in — Gora Kansuiro (BOOKED)",detail:"Free-flowing hot-spring ryokan. Conf 3643-4346-3960. Change into yukata.",who:"Family",map:"Gora Kansuiro Hakone"},
+      {time:"4:00pm",type:"activity",icon:"🌿",label:"Gōra Park (optional)",detail:"Botanical garden, ¥700. Emily and Anna in their element.",who:"Family",map:"Gora Park Hakone"},
+      {time:"5:30pm",type:"activity",icon:"♨️",label:"Communal onsen — pre-dinner soak",detail:"🎎 Onsen etiquette: fully nude, wash thoroughly first, the small towel never touches the water, tattoos may need covering.",who:"Family"},
+      {time:"7:00pm",type:"food",icon:"🍱",label:"Kaiseki dinner at the ryokan",detail:"Seasonal multi-course. Whole family together.",who:"Family"},
+      {time:"9:00pm",type:"activity",icon:"♨️",label:"Post-dinner onsen",detail:"The best time for a long soak.",who:"Family"},
     ],
-    notes:"You gain back July 26 crossing the date line home. Last konbini run at KIX airport — stock up on snacks for the flight home."
+    notes:"🗓️ Marine Day 3-day weekend (holiday Mon Jul 20) — peak crowds. In-Hakone transport is all walk-up; go early. Romancecar, Free Pass and the ryokan are all booked."
+  },
+  {
+    day:8, date:"Sun Jul 19", location:"Hakone Loop → Nagoya", emoji:"🗻",
+    color:"#5a8a5a", tags:["Split Day","Nature","Travel Day"],
+    summary:"The full Hakone loop, then a split — a cedar-forest hike for Chris & Zoe, a gentle nature walk for Anna & Emily — then travel to Nagoya.",
+    morningWalk:null,
+    pairings:[
+      {pair:"Chris & Zoe",activity:"Old Tōkaidō stone-paved hike — Moto-Hakone → Amazake-chaya teahouse → Hatajuku (~2h). The real cedar-forest hike."},
+      {pair:"Anna & Emily",activity:"Onshi Hakone Park — easy lakeside loop with Fuji viewpoints — then lakeside soba."},
+    ],
+    schedule:[
+      {time:"8:00am",type:"food",icon:"🍱",label:"Ryokan breakfast",detail:"Take your time.",who:"Family"},
+      {time:"9:30am",type:"transport",icon:"🧳",label:"Check out · bags to station",detail:"Anna + Emily carry the overnight bags; Chris + Zoe hike light.",who:"Family"},
+      {time:"10:00am",type:"transport",icon:"🚠",label:"Gōra → Sōunzan cable car → Owakudani ropeway",detail:"Walk-up, no reservation (Free Pass). 18-person gondolas every ~1 min — holiday lines likely, board early.",who:"Family",map:"Owakudani Station Hakone Ropeway"},
+      {time:"10:45am",type:"activity",icon:"🌋",label:"Owakudani volcanic valley",detail:"Steam vents, black volcanic eggs (¥500 for 5). Brief stop.",who:"Family",map:"Owakudani Hakone"},
+      {time:"11:30am",type:"transport",icon:"⛵",label:"Ropeway → Togendai → Lake Ashi pirate-ship cruise → Moto-Hakone",detail:"Emily's highlight. Covered by the Free Pass.",who:"Family",map:"Hakone Sightseeing Cruise Togendai"},
+      {time:"12:00pm",type:"activity",icon:"🌊",label:"Hakone Shrine lakeside torii",detail:"The iconic gate rising from the lake. 🎎 Shinto: bow twice, clap twice, bow once; keep to the side of the torii path.",who:"Family",map:"Hakone Shrine"},
+      {time:"12:30pm",type:"activity",icon:"🌲",label:"Cedar Avenue — together, then SPLIT",detail:"Walk the ~500m lane of 370-year-old cedars, then divide for the afternoon (regroup at Odawara).",who:"Family",map:"Cedar Avenue of Hakone"},
+      {time:"12:45pm",type:"activity",icon:"🥾",label:"CHRIS & ZOE: Old Tōkaidō hike (~2h)",detail:"Original stone path under deep cedar shade to the Amazake-chaya teahouse; snacks there are lunch.",who:"Chris",map:"Amazake Chaya Hakone"},
+      {time:"12:45pm",type:"activity",icon:"🌳",label:"ANNA & EMILY: Onshi Hakone Park + soba lunch",detail:"Easy lakeside loop with Fuji viewpoints, then soba at Moto-Hakone.",who:"Anna",map:"Onshi Hakone Park"},
+      {time:"~3:00pm",type:"transport",icon:"🚄",label:"Regroup at Odawara · Shinkansen → Nagoya (~4:00pm, ~1h40)",detail:"Buffered to ~4pm to absorb the holiday bus + the hike split (restroom/ekiben time at Odawara). Seat E for Fuji. ⚠️ Reserve — Marine Day weekend fills. Arrive Nagoya ~5:40. A reserved ticket is still valid on a later train's non-reserved car if the bus runs long.",who:"Family",map:"Odawara Station"},
+      {time:"5:30pm",type:"activity",icon:"🏨",label:"Check in — Richmond Hotel Nagoya · Laundry #2",detail:"Conf HKT420267. Start a load — this wash covers the Kyoto stretch.",who:"Family",map:"Richmond Hotel Nagoya Shinkansenguchi"},
+      {time:"6:30pm",type:"food",icon:"🍢",label:"Nagoya dinner",detail:"Picks: Yabaton (miso katsu), Atsuta Hōraiken (hitsumabushi), Sekai no Yamachan (tebasaki).",who:"Family",map:"miso katsu Nagoya Station"},
+    ],
+    notes:"The ~30-min-later shinkansen fits the hike. Sort the bag handoff at the Gora checkout; holiday-Sunday bus traffic from Moto-Hakone can run long — leave a buffer."
+  },
+  {
+    day:9, date:"Mon Jul 20", location:"Nagoya (Ghibli Park) → Kyoto", emoji:"🎡",
+    color:"#5a8a5a", tags:["Ghibli","Whole Family","Travel Day"],
+    summary:"The day Zoe and Emily have waited for. You're already in Nagoya — no rush, just the park.",
+    morningWalk:null,
+    pairings:[],
+    schedule:[
+      {time:"8:30am",type:"food",icon:"☕",label:"Hotel breakfast / konbini run",detail:"Pack snacks for the park.",who:"Family"},
+      {time:"9:30am",type:"transport",icon:"🚝",label:"Linimo to Ghibli Park (~30min)",detail:"Nagoya Station → Higashiyama Line → Fujigaoka → Linimo.",who:"Family"},
+      {time:"11:00am",type:"activity",icon:"🎡",label:"GHIBLI PARK — Premium Grand Stroll Pass (BOOKED)",detail:"Conf #8230237453 · 11:00 entry · park hours 9–5. Grand Warehouse first (coolest), Valley of Witches, Dondoko Forest, Mononoke Village.",who:"Family",map:"Ghibli Park Aichi",url:"https://ghibli-park.jp/en/"},
+      {time:"5:00pm",type:"transport",icon:"🚶",label:"Leave for Nagoya Station",detail:"Linimo reverse → Fujigaoka → Higashiyama Line. Allow ~50min.",who:"Family"},
+      {time:"~6:30pm",type:"transport",icon:"🚅",label:"Shinkansen Nagoya → Kyoto (~38min)",detail:"Don't rush the 6:00 train — Nagoya→Kyoto runs every ~10–20 min. Budget ~30 min at Nagoya Station for the restroom + Zoe's ekiben, then take the next one. Arrive Kyoto ~7:10. Luggage already waiting (forwarded from Tokyo).",who:"Family"},
+      {time:"~7:30pm",type:"activity",icon:"🏨",label:"Check in — Hotel Rings Kyoto",detail:"Conf 6504301136. Kyoto is immediately quieter and older. Eat something simple, sleep.",who:"Family",map:"Hotel Rings Kyoto Sakaimachi Rokkaku"},
+    ],
+    notes:"Jul 20 is Marine Day — holiday crowds despite being a Monday. Hit the highest-priority Ghibli spots first."
+  },
+  {
+    day:10, date:"Tue Jul 21", location:"Kyoto — Maker's Day", emoji:"🏺",
+    color:"#8a7060", tags:["Whole Family","Craft"],
+    summary:"A hands-on day: indigo and calligraphy in the morning, and a booked kintsugi session in Higashiyama in the afternoon.",
+    morningWalk:{who:"Chris solo",route:"Kamo River at dawn — locals on the stepped banks, herons in the shallows.",duration:"~1 hour",coffee:"A riverside kissaten along the Kamo"},
+    pairings:[
+      {pair:"Anna & Emily",activity:"Shibori indigo dyeing (~2h). WEAR OLD CLOTHES — indigo stains. Emily's most treasured souvenir."},
+      {pair:"Chris & Zoe",activity:"Calligraphy workshop — Zoe writes Japanese study words, Chris his name in kanji."},
+      {pair:"Anna & Chris (3pm)",activity:"Kintsugi (gold-repair) workshop in Higashiyama — BOOKED, 2 people. Kids explore Ninenzaka/Sannenzaka nearby."},
+    ],
+    schedule:[
+      {time:"8:30am",type:"food",icon:"☕",label:"Relaxed breakfast — hotel cafe",detail:"",who:"Family"},
+      {time:"9:30am",type:"activity",icon:"🎨",label:"ANNA & EMILY: Shibori indigo dyeing (~2h)",detail:"⚠️ Old clothes — indigo stains permanently. Mother-and-daughter. (Moved here from Jul 24.)",who:"Anna"},
+      {time:"9:30am",type:"activity",icon:"🖌️",label:"CHRIS & ZOE: Calligraphy workshop (~1.5–2h)",detail:"'I would love it' — Zoe. Search 'Kyoto calligraphy experience English'. (Moved here from Jul 24.)",who:"Chris"},
+      {time:"12:30pm",type:"food",icon:"🍱",label:"Lunch, then east toward Higashiyama",detail:"",who:"Family"},
+      {time:"3:00pm",type:"activity",icon:"🏺",label:"KINTSUGI — Anna & Chris (BOOKED)",detail:"Zen Chopsticks & Kintsugi Workshop near Yasaka Shrine. Conf GYGMX4HMRBY9. ~1h, English.",who:"Anna",map:"Zen Chopsticks and Kintsugi Workshop Gion Kyoto"},
+      {time:"3:00pm",type:"activity",icon:"📸",label:"ZOE & EMILY: explore Ninenzaka / Sannenzaka",detail:"Preserved sloping streets by the studio — souvenir shops, matcha, a great photo walk. Regroup at 4.",who:"Zoe",map:"Ninenzaka Kyoto"},
+      {time:"5:30pm",type:"rest",icon:"🌿",label:"Loose late afternoon / evening",detail:"Kamo River walk, rest, or Pontochō dinner. The unhurried part of the day.",who:"Family"},
+      {time:"7:30pm",type:"food",icon:"🍶",label:"Pontochō Alley dinner",detail:"Lantern-lit alley along the Kamo River; riverside kawayuka terraces in summer.",who:"Family",map:"Pontocho Alley Kyoto"},
+    ],
+    notes:"Jul 21 became the 'maker's day' — the workshops moved off the Gion-parade morning. Some down-time is preserved in the afternoon/evening."
+  },
+  {
+    day:11, date:"Wed Jul 22", location:"Kyoto — Nishiki, Nijō & a Gion Night Tour", emoji:"🏯",
+    color:"#6b8cba", tags:["Split Day","Culture","Food"],
+    summary:"Anna's food-market morning, Chris's knife-making, Nijō Castle, and a guided Gion night walk.",
+    morningWalk:null,
+    pairings:[
+      {pair:"Anna + the girls",activity:"Nishiki Market — Anna sets the pace; the market is a full meal if sampled strategically."},
+      {pair:"Chris solo",activity:"Knife-making at a Kyoto blacksmith (~2–3h) — making something by hand to bring home."},
+    ],
+    schedule:[
+      {time:"8:30am",type:"activity",icon:"🛒",label:"NISHIKI MARKET — Anna leads, girls along (2h)",detail:"Best before 11am. 🎎 No walk-and-eat — eat at the stall; don't handle produce you're not buying.",who:"Family",map:"Nishiki Market Kyoto"},
+      {time:"9:30am",type:"activity",icon:"🔨",label:"CHRIS: Knife-making at a Kyoto forge (~2–3h)",detail:"Authentic forge session. Book ahead — small sessions fill.",who:"Chris"},
+      {time:"11:00am",type:"food",icon:"🍢",label:"Nishiki stall lunch",detail:"Sample strategically — it's a full meal.",who:"Family"},
+      {time:"12:30pm",type:"rest",icon:"🌡️",label:"Midday rest — Takashimaya AC",detail:"July heat; excellent food floors too.",who:"Family",map:"Takashimaya Kyoto"},
+      {time:"3:00pm",type:"activity",icon:"🏯",label:"Nijō Castle",detail:"Chris's request. Famous 'nightingale floors'. ¥1,300.",who:"Family",map:"Nijo Castle Kyoto",url:"https://nijo-jocastle.city.kyoto.lg.jp/?lang=en"},
+      {time:"6:00pm",type:"activity",icon:"🏮",label:"GUIDED GION NIGHT TOUR (~2h, English)",detail:"Hanamikoji, Yasaka Shrine, geisha-culture history. Jul 21–23 evenings are the Ato Matsuri Yoiyama — floats lit, stalls out. 🎎 Photography banned on Gion's private alleys (¥10,000 fine); never chase geiko.",who:"Family",map:"Gion-Shijo Station Kyoto"},
+      {time:"8:00pm",type:"food",icon:"🍜",label:"Dinner near Gion",detail:"Book ahead if possible. Picks: Gion Kappa, sweets at Kasagiya.",who:"Family",map:"restaurants Gion Kyoto"},
+    ],
+    notes:"Nijō Castle is Chris's specific request; Nishiki is Anna's. The self-guided Gion evening upgraded to a guided night tour."
+  },
+  {
+    day:12, date:"Thu Jul 23", location:"Kyoto — Arashiyama + Date Night 💙", emoji:"🎋",
+    color:"#5a8a5a", tags:["Split Day","Nature","Animals","Date Night"],
+    summary:"Bamboo, wild macaques, the scenic railway — and a booked date night in Gion.",
+    morningWalk:{who:"Chris solo",route:"Arashiyama Bamboo Grove at dawn — nearly empty before the crowds.",duration:"~1 hour",coffee:"Riverside Arashiyama cafes open early"},
+    pairings:[
+      {pair:"Anna & Emily",activity:"Iwatayama Monkey Park — 15-min uphill hike to wild macaques. Emily's most joyful animal moment."},
+      {pair:"Chris & Zoe",activity:"Tenryū-ji UNESCO garden — pond garden backed by the Arashiyama mountains."},
+      {pair:"Anna & Chris (evening)",activity:"Date night — Sumiro Man, Gion (BOOKED, 6:30pm). The girls have a Ghibli film night at the hotel."},
+    ],
+    schedule:[
+      {time:"8:00am",type:"activity",icon:"🎋",label:"Family: Bamboo Grove",detail:"Early = fewer crowds. Zoe photographs relentlessly.",who:"Family",map:"Arashiyama Bamboo Grove"},
+      {time:"9:30am",type:"activity",icon:"🐒",label:"ANNA & EMILY: Iwatayama Monkey Park",detail:"15-min uphill hike; wild macaques roaming free. ¥550/¥250.",who:"Anna",map:"Iwatayama Monkey Park"},
+      {time:"9:30am",type:"activity",icon:"🌿",label:"CHRIS & ZOE: Tenryū-ji garden",detail:"~¥500. UNESCO pond garden.",who:"Chris",map:"Tenryu-ji Temple Arashiyama",url:"https://www.tenryuji.com/en/"},
+      {time:"12:00pm",type:"food",icon:"🍜",label:"Riverside lunch",detail:"Outdoor decks. Picks: Arashiyama Yoshimura (soba), Shōraian (tofu kaiseki).",who:"Family",map:"restaurants Arashiyama riverside"},
+      {time:"1:30pm",type:"activity",icon:"🚂",label:"Sagano Scenic Railway (book ahead)",detail:"¥880. 25min through the mountain gorge — open cars in summer.",who:"Family",map:"Sagano Romantic Train Torokko Saga",url:"https://www.sagano-kanko.co.jp/en/"},
+      {time:"2:30pm",type:"activity",icon:"🌉",label:"Togetsukyō Bridge",detail:"Anna's river moment.",who:"Family",map:"Togetsukyo Bridge Arashiyama"},
+      {time:"3:30pm",type:"transport",icon:"🚇",label:"Back to Kyoto (JR Sagano, ~15min)",detail:"Rest before the evening.",who:"Family"},
+      {time:"5:30pm",type:"rest",icon:"🎬",label:"Date-night prep — girls' Ghibli marathon",detail:"Konbini run in the hotel block only; check-in texts every 90min.",who:"Zoe"},
+      {time:"6:30pm",type:"activity",icon:"💙",label:"ANNA & CHRIS: Date night — Sumiro Man (Gion)",detail:"BOOKED, 6:30pm, 2 people. Atmospheric izakaya, not formal kaiseki. Stay in Gion all evening.",who:"Anna",map:"Sumiro Man Gion Kyoto",url:"https://tabelog.com/en/kyoto/A2601/A260201/26039250/"},
+    ],
+    notes:"Monkey park is 15min uphill — worth it. Date night moved here; Arashiyama ends by 3:30, leaving time to rest first."
+  },
+  {
+    day:13, date:"Fri Jul 24", location:"Kyoto — Gion Matsuri Parade + Cooking", emoji:"🎏",
+    color:"#d4810a", tags:["Festival","Cooking","Whole Family"],
+    summary:"Pre-dawn torii gates, the Gion Matsuri Ato parade, and the whole family cooks together.",
+    morningWalk:null,
+    pairings:[],
+    schedule:[
+      {time:"6:30am",type:"activity",icon:"⛩️",label:"Family: Fushimi Inari (optional, pre-dawn)",detail:"JR Nara Line, 5min. 🎎 Shinto form (bow-clap-clap-bow). Also dodges the parade crowds.",who:"Family",map:"Fushimi Inari Taisha",url:"https://inari.jp/en/"},
+      {time:"9:30am",type:"activity",icon:"🎏",label:"GION MATSURI — ATO parade (9:30–~11:50)",detail:"~11 floats from Karasuma-Oike → Oike-dōri → Kawaramachi → Shijō. Hotel Rings is a few blocks off the route. 🎎 The floats are sacred — don't touch; stay behind the lines.",who:"Family",map:"Karasuma Oike intersection Kyoto"},
+      {time:"12:30pm",type:"food",icon:"🍱",label:"Light lunch",detail:"Don't eat heavily — the cooking class is dinner.",who:"Family"},
+      {time:"3:00pm",type:"activity",icon:"🍳",label:"KYOTO COOKING CLASS — machiya townhouse (3h)",detail:"Dashi, miso, seasonal vegetables, wagashi sweets. Anna in her element.",who:"Family"},
+      {time:"6:00pm",type:"food",icon:"🍱",label:"Eat what you cooked — dinner in the machiya",detail:"",who:"Family"},
+      {time:"8:00pm",type:"transport",icon:"🚶",label:"Walk home through Gion at night",detail:"Hanamikoji Street.",who:"Family"},
+      {time:"Night",type:"activity",icon:"🧳",label:"LOGISTICS: forward bags to the Tokyo (Station East) hotel",detail:"⚠️ Hand to Yamato at Hotel Rings tonight; arrives Jul 25 PM. Carry a small overnight bag.",who:"Family"},
+    ],
+    notes:"Indigo + calligraphy moved to Jul 21 to make room for the parade. Cooking class at 3pm avoids peak heat and replaces dinner."
+  },
+  {
+    day:14, date:"Sat Jul 25", location:"Kyoto → Tokyo (Tokyo Station)", emoji:"🍢",
+    color:"#6a7a9a", tags:["Travel Day","Food"],
+    summary:"Final Kyoto morning, back to Tokyo by shinkansen, then a street-food walking tour for dinner.",
+    morningWalk:null,
+    pairings:[],
+    schedule:[
+      {time:"8:00am",type:"activity",icon:"🛒",label:"Early Nishiki Market at opening",detail:"Anna's last Kyoto market pass — quiet at 8am.",who:"Family",map:"Nishiki Market Kyoto"},
+      {time:"9:00am",type:"activity",icon:"🍵",label:"Anna's final Kyoto food shopping",detail:"Miso, yatsuhashi, tsukemono, matcha, mirin — to cook Japanese food at home.",who:"Family"},
+      {time:"10:30am",type:"transport",icon:"🚄",label:"Check out · Shinkansen Kyoto → Tokyo (~midday, ~2h15)",detail:"Reserve seats; Seat E for Fuji. Bags forwarded to the hotel.",who:"Family"},
+      {time:"2:30pm",type:"activity",icon:"🏨",label:"Arrive Tokyo Station · check in MIMARU Tokyo Station East (BOOKED)",detail:"Conf T3BBDEA6BD164. Steps from Tokyo Station — drop the bags off the shinkansen, no transfer.",who:"Family",map:"MIMARU Tokyo Station East",url:"https://mimaruhotels.com/en/hotel/tokyo-station-east/"},
+      {time:"5:30pm",type:"food",icon:"🍢",label:"TOKYO FOOD + CULTURE WALKING TOUR (Chris's pick)",detail:"Okonomiyaki, takoyaki, taiyaki, skewers — this is dinner, and it rehomes the Dotonbori street food. Book ahead.",who:"Family",url:"https://www.byfood.com/food-tours"},
+      {time:"Anytime",type:"food",icon:"🥪",label:"Age.3 fried-sando + Don Quijote (Ginza)",detail:"Age.3 is a takeout-only sando counter near Ginza-itchōme (often a queue). Don Quijote = late-night drop-in.",who:"Family",map:"Age.3 Ginza"},
+    ],
+    notes:"Osaka was cut in favor of this Tokyo finale. The Tokyo-Station base means an easy shinkansen arrival and a clean Haneda exit tomorrow."
+  },
+  {
+    day:15, date:"Sun Jul 26", location:"Tokyo → Haneda → Indianapolis ✈️", emoji:"🛍️",
+    color:"#c0392b", tags:["Grand Finale","Travel Day"],
+    summary:"One light Tokyo-Station-and-Ginza souvenir morning, bags stored, then home from Haneda.",
+    morningWalk:null,
+    pairings:[],
+    schedule:[
+      {time:"8:30am",type:"food",icon:"☕",label:"Breakfast + finish packing",detail:"",who:"Family"},
+      {time:"9:00am",type:"activity",icon:"🧳",label:"Check out · STORE ALL BAGS at the hotel",detail:"Wander the morning unencumbered; collect bags before the airport.",who:"Family"},
+      {time:"9:30am",type:"activity",icon:"🛍️",label:"Souvenir morning — Tokyo Station + a Ginza hop",detail:"At Tokyo Station: Character Street (Sanrio, Pokémon, Ghibli) + Daimaru depachika. One Hibiya stop to Ginza for the G.Itoya flagship + Sanrioworld Ginza (world's largest). Optional Age.3 sando.",who:"Family",map:"Itoya Ginza",url:"https://www.ito-ya.co.jp/ginza/en/"},
+      {time:"12:15pm",type:"activity",icon:"🧳",label:"Collect bags from the hotel",detail:"",who:"Family"},
+      {time:"12:30pm",type:"transport",icon:"🚆",label:"Tokyo Station → Haneda T3 (~40min)",detail:"Leave by ~12:30 — Tokyo Station is big, give yourselves margin to find the bus stop/monorail. Airport Limousine bus direct, or JR → Hamamatsuchō → Tokyo Monorail. ⚠️ Be at HND by 2:00pm.",who:"Family"},
+      {time:"2:00pm",type:"transport",icon:"🛫",label:"HND Terminal 3 check-in — UA counter",detail:"~3h before departure. Last konbini / souvenir run airside.",who:"Family",map:"Haneda Airport Terminal 3"},
+      {time:"5:15pm",type:"transport",icon:"✈️",label:"UA882 HND → ORD, then UA → IND",detail:"Cross the date line — gain the day back. Arrive Indianapolis 8:13pm, still July 26.",who:"Family"},
+    ],
+    notes:"Keep the morning light — leave Tokyo Station by ~12:30 to be at HND by 2:00. If anything runs long, drop the shopping, not the buffer."
   }
 ];
 
 const bookings = [
-  {what:"Flights (IND→NRT Jul 11, KIX→IND Jul 26)",when:"Now",urgent:true},
-  {what:"MIMARU hotels — all three cities",when:"Jan 12, 2026 (6 months out)",urgent:true},
-  {what:"Hakone Ryokan — private onsen",when:"Now",urgent:true},
-  {what:"Ghibli Museum tickets",when:"June 9 at 9pm Indianapolis time (EDT)",urgent:true},
-  {what:"Tenjin Matsuri riverside seats (Jul 25)",when:"Now — sell out months ahead",urgent:true},
-  {what:"Cooking class — Kyoto machiya",when:"2–3 months before",urgent:false},
-  {what:"Manga/illustration workshop",when:"2–3 months before",urgent:false},
-  {what:"Shibori dyeing — Kyoto",when:"2–3 months before",urgent:false},
-  {what:"Furoshiki workshop — Tokyo",when:"2–3 months before",urgent:false},
-  {what:"teamLab Planets",when:"4–6 weeks before",urgent:false},
-  {what:"Sanrio Puroland (timed entry)",when:"4–6 weeks before",urgent:false},
-  {what:"Animal cafe — Osaka",when:"2–4 weeks before",urgent:false},
-  {what:"Sagano Scenic Railway",when:"1–2 months before",urgent:false},
-  {what:"Gion date night restaurant",when:"4–6 weeks before",urgent:false},
+  {what:"✈️ United flights — IND⇄HND (conf AFX330)",when:"✅ Booked",urgent:false},
+  {what:"🏨 MIMARU Tokyo Shinjuku West (Jul 12–18)",when:"✅ Booked",urgent:false},
+  {what:"♨️ Gora Kansuiro ryokan, Hakone (Jul 18–19)",when:"✅ Booked",urgent:false},
+  {what:"🏨 Richmond Hotel Nagoya (Jul 19–20)",when:"✅ Booked",urgent:false},
+  {what:"🏨 Hotel Rings Kyoto (Jul 20–25)",when:"✅ Booked",urgent:false},
+  {what:"🏨 MIMARU Tokyo Station East (Jul 25–26, conf T3BBDEA6BD164)",when:"✅ Booked",urgent:false},
+  {what:"🐱 Ghibli Museum (Jul 15, 12:00)",when:"✅ Booked",urgent:false},
+  {what:"🎡 Ghibli Park (Jul 20, 11:00)",when:"✅ Booked",urgent:false},
+  {what:"🚃 Romancecar + Hakone Free Pass (Jul 18)",when:"✅ Booked",urgent:false},
+  {what:"🌈 teamLab Planets (Jul 14)",when:"✅ Booked",urgent:false},
+  {what:"🏺 Kintsugi workshop, Kyoto (Jul 21)",when:"✅ Booked",urgent:false},
+  {what:"💙 Date night — Sumiro Man, Gion (Jul 23)",when:"✅ Booked",urgent:false},
+  {what:"🚅 Shinkansen seats — Odawara→Nagoya, Nagoya→Kyoto, Kyoto→Tokyo",when:"Reserve as each 1-month window opens (Marine Day fills)",urgent:true},
+  {what:"🎨 Workshops — indigo, calligraphy, manga, furoshiki, knife, cooking",when:"Book by early July",urgent:true},
+  {what:"🏮 Gion night tour (Jul 22) + Tokyo food tour (Jul 25)",when:"Book by early July",urgent:true},
+  {what:"🍴 Jul-17 anime cafe — Namja Town set; watch Animate Cafe lineup",when:"Re-check ~Jul 1",urgent:false},
 ];
 
 function App() {
@@ -420,6 +368,8 @@ function App() {
   const current = days.find(d => d.day === activeDay);
   const filtered = filter === "All" ? days : days.filter(d => d.tags.includes(filter));
   const filters = ["All","Split Day","Whole Family","Chris Solo","Ghibli","Food","Animals","Festival","Date Night"];
+  const mapsUrl = q => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+  const linkStyle = {fontSize:"0.6rem",color:"#b08850",textDecoration:"none",border:"1px solid #c8a88240",borderRadius:"1rem",padding:"0.05rem 0.42rem",whiteSpace:"nowrap"};
 
   // scroll active tab into view
   useEffect(() => {
@@ -461,7 +411,7 @@ function App() {
           <div style={S.subtitle}>Depart Jul 11 · Arrive Jul 12 · Return Jul 26, 2026</div>
           <div style={S.byline}>CHRIS · ANNA · ZOE · EMILY</div>
           <div style={S.routePill}>
-            {["IND ✈ Jul 11","Tokyo Jul 12–18","→","Hakone Jul 18–19","→","Kyoto Jul 19–25","→","Osaka Jul 25–26","→","✈ IND Jul 26"].map((s,i)=>(
+            {["IND ✈ Jul 11","Tokyo Jul 12–18","→","Hakone Jul 18–19","→","Nagoya Jul 19–20","→","Kyoto Jul 20–25","→","Tokyo Jul 25–26","→","✈ IND Jul 26"].map((s,i)=>(
               <span key={i} style={{color:s==="→"?"#c8a882":"#8a7050"}}>{s}</span>
             ))}
           </div>
@@ -564,6 +514,12 @@ function App() {
                           {wc&&item.who!=="Family"&&(
                             <span style={{fontSize:"0.56rem",padding:"0.08rem 0.4rem",borderRadius:"1rem",background:`${wc}14`,color:wc,border:`1px solid ${wc}25`,whiteSpace:"nowrap"}}>{item.who}</span>
                           )}
+                          {item.map&&(
+                            <a href={mapsUrl(item.map)} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()} style={linkStyle}>📍 map</a>
+                          )}
+                          {item.url&&(
+                            <a href={item.url} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()} style={linkStyle}>🔗 site</a>
+                          )}
                         </div>
                         {isOpen&&item.detail&&(
                           <div style={{fontSize:"0.76rem",color:"#7a6040",lineHeight:1.55,marginTop:"0.3rem",fontStyle:"italic"}}>{item.detail}</div>
@@ -590,7 +546,7 @@ function App() {
       {/* FOOTER / BOOKING CHECKLIST */}
       <div style={S.footer}>
         <div style={{maxWidth:820,margin:"0 auto"}}>
-          <div style={{fontSize:"0.58rem",letterSpacing:"0.38em",color:"#c8a882",textTransform:"uppercase",marginBottom:"1.5rem",textAlign:"center"}}>Book Immediately</div>
+          <div style={{fontSize:"0.58rem",letterSpacing:"0.38em",color:"#c8a882",textTransform:"uppercase",marginBottom:"1.5rem",textAlign:"center"}}>Bookings & Status</div>
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:"0.6rem"}}>
             {bookings.map((item,i)=>(
               <div key={i} style={{background:item.urgent?"rgba(200,80,50,0.09)":"rgba(240,232,218,0.03)",border:`1px solid ${item.urgent?"rgba(200,80,50,0.22)":"rgba(200,168,130,0.09)"}`,borderRadius:"0.6rem",padding:"0.75rem 0.9rem"}}>
@@ -603,11 +559,11 @@ function App() {
             ))}
           </div>
 
-          {/* Ghibli warning */}
+          {/* Still to book */}
           <div style={{marginTop:"1.5rem",padding:"1.1rem",background:"rgba(200,168,130,0.06)",border:"1px solid rgba(200,168,130,0.15)",borderRadius:"0.75rem"}}>
-            <div style={{fontSize:"0.6rem",color:"#c8a882",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:"0.5rem"}}>⚠️ Ghibli Ticket Reminder</div>
+            <div style={{fontSize:"0.6rem",color:"#c8a882",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:"0.5rem"}}>⚠️ Still To Book</div>
             <div style={{fontSize:"0.82rem",color:"#b0a080",lineHeight:1.65}}>
-              Tickets for July visits go on sale <strong style={{color:"#f0e0c0"}}>Monday June 9, 2026 at 9:00pm Indianapolis time (EDT)</strong> — that is 10:00am JST on June 10 in Japan. Create your Lawson Ticket account now. Log in 15–30 minutes early. Do not refresh repeatedly before the sale opens.
+              The big pieces are locked. What's left: <strong style={{color:"#f0e0c0"}}>Shinkansen reserved seats</strong> for the Marine-Day weekend (Odawara→Nagoya Jul 19, Nagoya→Kyoto Jul 20, Kyoto→Tokyo Jul 25 — reserve each as its 1-month window opens), the <strong style={{color:"#f0e0c0"}}>Kyoto &amp; Tokyo workshops and walking tours</strong> (book by early July), and keep an eye on the <strong style={{color:"#f0e0c0"}}>Jul 17 anime-cafe</strong> lineup.
             </div>
           </div>
 
