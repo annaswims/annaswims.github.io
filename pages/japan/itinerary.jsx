@@ -122,7 +122,7 @@ const days = [
       { time: "7:30pm", type: "food", icon: "🍤", label: "Dinner — Asakusa tempura or tonkatsu", detail: "Traditional sit-down dinner near the historic district.", who: "Family" },
       { time: "9:00pm", type: "transport", icon: "🚇", label: "Asakusa → Shinjuku (~30min)", detail: "Home.", who: "Family" },
     ],
-    notes: "Ghibli Museum is closed on Tuesdays — this day is perfectly arranged around that. Tomorrow is the big Ghibli day."
+                notes: ""
   },
   {
     day: 4, date: "Wed Jul 15", location: "Tokyo — Ghibli Museum Day 🌟", emoji: "🐱",

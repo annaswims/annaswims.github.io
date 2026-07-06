@@ -57,8 +57,8 @@ const days = [
       {time:"Morning Jul 11",type:"transport",icon:"✈️",label:"Depart IND via Chicago — UA3534 → UA881",detail:"United conf AFX330. IND→ORD 10:45am, then ORD→HND on the Boeing 787-10 Dreamliner.",who:"Family",url:"https://www.united.com"},
       {time:"Overnight",type:"transport",icon:"✈️",label:"Cross the Pacific — you lose July 11",detail:"~13h leg. Try to sleep and reset toward Tokyo time.",who:"Family"},
       {time:"3:25pm Jul 12",type:"transport",icon:"🚉",label:"Arrive Tokyo HANEDA (HND)",detail:"Allow ~90min for immigration and bags. Passports and landing forms ready.",who:"Family",map:"Haneda Airport Terminal 3"},
-      {time:"~4:30pm",type:"activity",icon:"💴",label:"Suica + cash at the airport",detail:"Buy Suica before the monorail — load ~¥3,000 each for the adults and Zoe, ¥2,000 for Emily. Pull ~¥40–50k cash from the Haneda ATM (better rate than the exchange counter).",who:"Family"},
-      {time:"~5:00pm",type:"transport",icon:"🚝",label:"Tokyo Monorail → Hamamatsuchō → Shinjuku (JR Yamanote)",detail:"~55min total. Emily leads from the front car.",who:"Family"},
+      {time:"~4:30pm",type:"activity",icon:"💴",label:"Suica + cash at the airport",detail:"Buy Suica before leaving the airport — load ~¥3,000 each for the adults and Zoe, ¥2,000 for Emily. Pull ~¥40–50k cash from the Haneda ATM (7-Bank/Japan Post — better rate than the exchange counter).",who:"Family"},
+      {time:"~5:00pm",type:"transport",icon:"🚕",label:"Taxi/Uber direct to MIMARU Tokyo Shinjuku West",detail:"~30–45min depending on traffic, ~¥8,000–9,500 flat/metered for all 4 + luggage — one seat, no transfers or stairs after the long-haul flight. Uber has a dedicated pickup zone at HND T3, or queue at the taxi rank. Chosen over the monorail+train combo for speed and convenience.",who:"Family"},
       {time:"~6:30pm",type:"activity",icon:"🏨",label:"Check in — MIMARU Tokyo Shinjuku West",detail:"Apartment-style room with coin laundry. Short walk around the block.",who:"Family",map:"MIMARU Tokyo Shinjuku West",url:"https://mimaruhotels.com/en/hotel/shinjuku-west/"},
       {time:"Evening",type:"food",icon:"🍜",label:"First ramen — Shinjuku",detail:"Keep it simple. Arrive, eat, sleep.",who:"Family"},
       {time:"9:00pm",type:"sleep",icon:"😴",label:"Early night — reset to Tokyo time",detail:"Jet lag is real. Sleep even if it feels wrong.",who:"Family"},
@@ -127,20 +127,21 @@ const days = [
     summary:"The family divides by interest. Everyone does exactly their thing.",
     morningWalk:null,
     pairings:[
-      {pair:"Anna solo",activity:"Furoshiki wrapping workshop (Link Collective, Shirokane-Takanawa) — the cloth becomes her trip carry-all. Then Isetan Shinjuku depachika, alone, no agenda."},
-      {pair:"Chris, Zoe & Emily",activity:"Manga & illustration workshop (3h), English-taught. 'FUN FUN FUN' — Zoe. Bring sketchbooks."},
-      {pair:"Family (1:00pm)",activity:"Reunion lunch — Anna brings depachika finds; everyone shares what they made and drew."},
+      {pair:"Anna solo",activity:"Isetan depachika, then the Furoshiki Wrapping Workshop (Link Collective, Shirokane-Takanawa — BOOKED) — the cloth becomes her trip carry-all."},
+      {pair:"Chris, Zoe & Emily",activity:"Free morning, then the Tokyo Manga Drawing Workshop at 2pm (BOOKED, ~3h), guided by an active pro manga artist. 'FUN FUN FUN' — Zoe. Bring sketchbooks."},
+      {pair:"Family (~1:15pm)",activity:"Reunion lunch — Anna brings depachika finds; regroup before Chris/Zoe/Emily head to the manga studio."},
     ],
     schedule:[
-      {time:"9:30am",type:"activity",icon:"🎨",label:"ANNA: Furoshiki workshop (1.5–2h)",detail:"Link Collective studio, Shirokane-Takanawa. The cloth becomes her carry-all.",who:"Anna",map:"Link Collective Tokyo Takanawa",url:"https://linkcollective.com/collections/workshop"},
-      {time:"9:30am",type:"activity",icon:"✏️",label:"CHRIS, ZOE & EMILY: Manga & illustration workshop (3h)",detail:"English-taught (Airbnb Experiences / Viator). Character design and manga panels.",who:"Chris"},
-      {time:"11:30am",type:"activity",icon:"🏬",label:"ANNA: Isetan Shinjuku depachika — solo",detail:"B1/B2 food halls. No agenda. Sample, buy, her own pace.",who:"Anna",map:"Isetan Shinjuku",url:"https://www.mistore.jp/store/shinjuku.html"},
-      {time:"1:00pm",type:"food",icon:"🍱",label:"Family reunion lunch",detail:"Anna brings the depachika finds; everyone shares the morning.",who:"Family"},
-      {time:"2:30pm",type:"activity",icon:"✏️",label:"Stationery round 2 (optional)",detail:"Loft Shinjuku or Hands if Zoe wants more.",who:"Zoe",map:"Loft Shibuya"},
-      {time:"4:00pm",type:"rest",icon:"🧺",label:"Rest + Laundry #1 at MIMARU",detail:"Start a load on arrival — the 24h coin laundry runs while you rest. Covers you through Hakone.",who:"Family"},
-      {time:"6:30pm",type:"food",icon:"🏮",label:"Shinjuku Golden Gai dinner / izakaya",detail:"Small atmospheric bars. Pick: Nagi ramen in Golden Gai.",who:"Family",map:"Shinjuku Golden Gai"},
+      {time:"9:00am",type:"activity",icon:"🏬",label:"ANNA: Isetan Shinjuku depachika (quick browse before furoshiki)",detail:"B1/B2 food halls. No agenda — sample and buy. Keep it short, leave by ~10:15 to reach Takanawa by 11.",who:"Anna",map:"Isetan Shinjuku",url:"https://www.mistore.jp/store/shinjuku.html"},
+      {time:"9:30am",type:"rest",icon:"☕",label:"CHRIS, ZOE & EMILY: free morning",detail:"Their manga workshop moved to the afternoon, so the morning's open — a slow konbini breakfast, or an early stationery run (Loft/Tokyu Hands Shinjuku) while Anna's at furoshiki.",who:"Chris"},
+      {time:"11:00am",type:"activity",icon:"🎁",label:"ANNA: Furoshiki Wrapping Workshop — BOOKED (1.5–2h)",detail:"Link Collective Tokyo Studio, NUEK Shirokane Takanawa #104 (~30min from Shinjuku). Conf #HKZX5CPUV, $35.00. The cloth becomes her carry-all for the rest of the trip.",who:"Anna",map:"Link Collective Tokyo Takanawa",url:"https://linkcollective.com/collections/workshop"},
+      {time:"~1:15pm",type:"food",icon:"🍱",label:"Family reunion lunch",detail:"Pushed later than the old 12:45 plan — the workshop can run to ~1:00pm plus the ~30min ride back from Takanawa. Anna brings depachika finds; regroup, then Chris/Zoe/Emily head to the manga studio.",who:"Family"},
+      {time:"2:00pm",type:"activity",icon:"✏️",label:"CHRIS, ZOE & EMILY: Tokyo Manga Drawing Workshop — BOOKED (~3h)",detail:"Guided by an active pro manga artist, English-taught (via Tripadvisor/Viator). Conf #1799603123, booking ref 1417308287, $377.82 (auto-charged Jul 14). 'FUN FUN FUN' — Zoe. Bring sketchbooks.",who:"Chris"},
+      {time:"2:00–5:00pm",type:"rest",icon:"🧺",label:"ANNA: free afternoon + Laundry #1",detail:"Her own time — more depachika, a craft shop, or rest. Start a load at MIMARU's 24h coin laundry so it runs while the others draw — covers you through Hakone.",who:"Anna"},
+      {time:"~5:30pm",type:"activity",icon:"🎨",label:"Regroup at the hotel",detail:"Everyone shares what they made and drew.",who:"Family"},
+      {time:"6:30pm",type:"food",icon:"🏮",label:"Shinjuku Golden Gai dinner / izakaya",detail:"Small atmospheric bars. Anna loves the community feel.",who:"Family",map:"Shinjuku Golden Gai"},
     ],
-    notes:"Book the manga workshop ahead — small sessions fill."
+    notes:"Furoshiki and the manga workshop are both booked — small sessions fill fast, so booking ahead paid off."
   },
   {
     day:6, date:"Fri Jul 17", location:"Tokyo — Kawaii & Anime Day", emoji:"🎀",
@@ -359,7 +360,7 @@ const bookings = [
   {what:"🍳 Cooking class, Kyoto — airKitchen (Jul 24)",when:"✅ Confirmed",urgent:false},
   {what:"💙 Date night — Sumiro Man, Gion (Jul 23)",when:"✅ Booked",urgent:false},
   {what:"🚅 Shinkansen reserved seats — Odawara→Nagoya, Nagoya→Kyoto, Kyoto→Tokyo",when:"✅ Booked",urgent:false},
-  {what:"🎨 Furoshiki workshop (Jul 16, Anna)",when:"Confirm time / not yet booked",urgent:true},
+  {what:"🎁 Furoshiki workshop, Link Collective (Jul 16, conf HKZX5CPUV)",when:"✅ Booked",urgent:false},
   {what:"🎨 Indigo dyeing + calligraphy (Jul 22)",when:"Book by early July",urgent:true},
   {what:"🍢 Tokyo food + culture walking tour (Jul 25)",when:"Book by early July",urgent:true},
   {what:"🍴 Jul-17 anime cafe — Namja Town set; watch Animate Cafe lineup",when:"Re-check ~Jul 3",urgent:false},
@@ -570,7 +571,7 @@ function App() {
           <div style={{marginTop:"1.5rem",padding:"1.1rem",background:"rgba(200,168,130,0.06)",border:"1px solid rgba(200,168,130,0.15)",borderRadius:"0.75rem"}}>
             <div style={{fontSize:"0.6rem",color:"#c8a882",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:"0.5rem"}}>⚠️ Still To Book</div>
             <div style={{fontSize:"0.82rem",color:"#b0a080",lineHeight:1.65}}>
-              Almost everything is locked — flights, hotels, Ghibli, all Shinkansen reserved seats, and most workshops/tours. What's left: <strong style={{color:"#f0e0c0"}}>Anna's furoshiki workshop</strong> (confirm the time), <strong style={{color:"#f0e0c0"}}>indigo dyeing + calligraphy</strong> (Jul 22), and the <strong style={{color:"#f0e0c0"}}>Tokyo food + culture walking tour</strong> (Jul 25) — book by early July — plus keep an eye on the <strong style={{color:"#f0e0c0"}}>Jul 17 anime-cafe</strong> lineup.
+              Almost everything is locked — flights, hotels, Ghibli, all Shinkansen reserved seats, and nearly all workshops/tours, including the furoshiki and manga workshops (both now booked). What's left: <strong style={{color:"#f0e0c0"}}>indigo dyeing + calligraphy</strong> (Jul 22), and the <strong style={{color:"#f0e0c0"}}>Tokyo food + culture walking tour</strong> (Jul 25) — book by early July — plus keep an eye on the <strong style={{color:"#f0e0c0"}}>Jul 17 anime-cafe</strong> lineup.
             </div>
           </div>
 
